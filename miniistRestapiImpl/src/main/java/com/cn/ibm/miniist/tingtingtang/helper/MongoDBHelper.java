@@ -16,6 +16,7 @@ public class MongoDBHelper
 	//private static String dbname = "test";
 	private static String dbname = "test";
 	//private static DBCollection collection;
+	private static Mongo mongo;
 	
 	public MongoDBHelper()
 	{
@@ -26,7 +27,7 @@ public class MongoDBHelper
 		{
 			//mongo = new Mongo(host, port);
 			MongoURI uri = new MongoURI("mongodb://" + host + ":" + port + "/" + dbname);
-	    	Mongo mongo = new Mongo(uri);
+	    	mongo = new Mongo(uri);
 	    	db = mongo.getDB(uri.getDatabase());
 			//db = mongo.getDB(dbname);
 		} 
@@ -37,13 +38,13 @@ public class MongoDBHelper
 		}
 	}
 	
-//	public DB getDB(String dbname)
-//	{
-//		return mongo.getDB(dbname);
-//	}
-	
 	public DB getDB()
 	{
 		return db;
+	}
+	
+	public void closeMongoSession()
+	{
+		mongo.close();
 	}
 }

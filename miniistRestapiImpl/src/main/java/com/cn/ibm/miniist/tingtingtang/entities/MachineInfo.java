@@ -9,24 +9,38 @@ package com.cn.ibm.miniist.tingtingtang.entities;
 
 public class MachineInfo 
 {
+	private String id;
 	private String mName;
 	private String hostName;
 	private String ipAdd;
-	private int id;
 	private String des;
 	private String createTime;
 	private String updateTime;
 	
-	/*public MachineInfo(String mName, String hostName, String ipAdd, int id, String des, Timestamp createTime, Timestamp updateTime)
+//	public MachineInfo(String mName, String hostName, String ipAdd, String des, String createTime, String updateTime)
+//	{
+//		this.mName = mName;
+//		this.hostName = hostName;
+//		this.ipAdd = ipAdd;
+//		//this.id = id;
+//		this.des = des;
+//		this.createTime = createTime;
+//		this.updateTime = updateTime;
+//	}
+	
+	/*
+	 * get and set id; but this id should be generated from MongoDB, 
+	 * so this function need to be confirmed and reset later on.
+	 */
+	public String getId()
 	{
-		this.mName = mName;
-		this.hostName = hostName;
-		this.ipAdd = ipAdd;
+		return id;
+	}
+	
+	public void setId(String id)
+	{
 		this.id = id;
-		this.des = des;
-		this.createTime = createTime;
-		this.updateTime = updateTime;
-	}*/
+	}
 	
 	/*
 	 * get and set machine name
@@ -65,20 +79,6 @@ public class MachineInfo
 	public void setIpAdd(String ipAdd)
 	{
 		this.ipAdd = ipAdd;
-	}
-	
-	/*
-	 * get and set id; but this id should be generated from MongoDB, 
-	 * so this function need to be confirmed and reset later on.
-	 */
-	public int getId()
-	{
-		return id;
-	}
-	
-	public void setId(int id)
-	{
-		this.id = id;
 	}
 	
 	/*
