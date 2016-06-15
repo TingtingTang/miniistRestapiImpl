@@ -1,0 +1,29 @@
+<!-- top navbar-->
+<header ng-include="'views/partials/top-navbar.html'" class="topnavbar-wrapper"></header>
+<!-- sidebar-->
+<aside ng-include="'views/partials/sidebar.html'" ng-controller="SidebarController" class="aside"></aside>
+<!-- offsidebar-->
+<aside ng-include="'views/partials/offsidebar.html'" class="offsidebar"></aside>
+<!-- Main section-->
+<section>
+   	<!-- Page content-->
+   	<div ui-view="" autoscroll="false" ng-class="app.viewAnimation" class="content-wrapper"></div>
+	
+</section>
+<!-- Page footer-->
+<footer ng-include="'views/partials/footer.html'"></footer>
+
+<!--==@ MINI IST ==-->
+
+<!--toaster needed-->
+<toaster-container toaster-options="{
+	'position-class': 'toast-bottom-right',
+	'close-button':true,
+	'body-output-type': 'trustedHtml'
+}"></toaster-container>
+
+	
+<!--login page (curtain)-->
+<!--<div class="curtain ctn200 mist-sign" ng-include="'views/partials/login.html'"></div>-->
+
+<!--==& MINI IST ==-->

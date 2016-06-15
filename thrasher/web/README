@@ -1,0 +1,5 @@
+Static Web Pages
+===================
+    * app/vendor: git clone https://github.com/thinkhy/JavascriptPlugins.git
+    * Start server: ./start.sh
+    * Stop server: ./stop.sh

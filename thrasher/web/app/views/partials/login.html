@@ -1,0 +1,120 @@
+<!--@ just for background sideshow-->
+<div class="container sideshow">
+	<div class="content">
+		<div id="connect-tree" class="connect-tree">
+			<canvas id="tree-canvas"></canvas>
+		</div>
+	</div>
+</div>
+<!--& just for background sideshow-->
+
+<div class="container sign" ng-controller="MistSignController as sign" >
+	<div class="block-center mt-xl wd-xl one-page login" ng-show="visible==true">
+	   <!-- START panel-->
+	   <div class="panel panel-transparent panel-flat">
+	      <div class="panel-heading text-center">
+	         <a href="#">
+	            <img src="img/logo-mini.png" alt="Image" class="block-center img-rounded" />
+	         </a>
+	      </div>
+	      <div class="panel-body">
+	         <p class="text-center pv text-decorate">SIGN IN TO CONTINUE.</p>
+	         <form role="form" ng-submit="sign.login()" name="sign.loginForm" novalidate="" class="form-validate mb-lg">
+	            <div class="form-group has-feedback">
+	               <input id="loginName" type="text" name="login_name" placeholder="Enter username or email" autocomplete="off" ng-model="sign.account.loginName" required="" class="form-control" />
+	               <span class="fa fa-user form-control-feedback text-muted"></span>
+	               <span ng-show="sign.loginForm.login_name.$dirty &amp;&amp; sign.loginForm.login_name.$error.required" class="text-danger">This field is required</span>
+	               <!--span ng-show="login.loginForm.account.$dirty &amp;&amp; login.loginForm.account.$error.email" class="text-danger">This field must be a valid email address</span-->
+	            </div>
+	            <div class="form-group has-feedback">
+	               <input id="loginPassword1" type="password" name="login_password" placeholder="Password" ng-model="sign.account.loginPassword" required="" class="form-control" />
+	               <span class="fa fa-lock form-control-feedback text-muted"></span>
+	               <span ng-show="sign.loginForm.login_password.$dirty &amp;&amp; sign.loginForm.login_password.$error.required" class="text-danger">This field is required</span>
+	            </div>
+	            <div class="clearfix">
+	               <div class="checkbox c-checkbox pull-left mt0">
+	                  <label>
+	                     <input type="checkbox" value="" name="login_remember" ng-model="sign.account.loginRemember" />
+	                     <span class="fa fa-check"></span><i class="text-decorate"> Remember Me</i>
+	                  </label>
+	               </div>
+	               <div class="pull-right">
+	               		<!--a ui-sref="page.recover" class="text-muted">Forgot your password?</a-->
+	               		<a href="#" class="text-muted">Forgot your password?</a>
+	               </div>
+	            </div>
+	            <button type="submit" class="btn btn-block btn-primary mt-lg">Login</button>
+	         </form>
+	         <div ng-show="sign.authMsg" class="alert alert-danger text-center">{{sign.authMsg}}</div>
+	         <p class="pt-lg text-center text-decorate">Need to Signup?</p>
+	         <!--a ui-sref="page.register" class="btn btn-block btn-default">Register Now</a-->
+	         <a ng-click="sign.toggleSign()" class="btn btn-block btn-default">Register Now</a>
+	      </div>
+	   </div>
+	   <!-- END panel-->
+	</div>
+	
+	<div class="block-center mt-xl wd-xl one-page register" ng-hide="visible">
+	   <!-- START panel-->
+	   <div class="panel panel-transparent panel-flat">
+	      <div class="panel-heading text-center">
+	         <a href="#">
+	            <img src="img/logo-mini.png" alt="Image" class="block-center img-rounded" />
+	         </a>
+	      </div>
+	      <div class="panel-body">
+	         <p class="text-center pv text-decorate">REGISTER TO CONTINUE.</p>
+	         <form role="form" name="sign.registerForm" novalidate="" ng-submit="sign.register()" class="form-validate mb-lg">
+	            <div class="form-group has-feedback">
+	               <label class="text-muted">User Name</label>
+	               <input type="text" name="reg_name" placeholder="Enter user name" autocomplete="off" ng-model="sign.account.regName" required="" class="form-control" />
+	               <span class="fa fa-user form-control-feedback text-muted"></span>
+	               <span ng-show="sign.registerForm.reg_name.$dirty &amp;&amp; sign.registerForm.reg_name.$error.required" class="text-danger">This field is required</span>
+	            </div>
+	            <div class="form-group has-feedback">
+	               <label class="text-muted">Email address</label>
+	               <input type="email" name="reg_email" placeholder="Enter email" autocomplete="off" ng-model="sign.account.regEmail" required="" class="form-control" />
+	               <span class="fa fa-envelope form-control-feedback text-muted"></span>
+	               <span ng-show="sign.registerForm.reg_email.$dirty &amp;&amp; sign.registerForm.reg_email.$error.required" class="text-danger">This field is required</span>
+	               <span ng-show="sign.registerForm.reg_email.$dirty &amp;&amp; sign.registerForm.reg_email.$error.email" class="text-danger">This field must be a valid email address</span>
+	            </div>
+	            <div class="form-group has-feedback">
+	               <label class="text-muted">Password</label>
+	               <input id="reg-password1" type="password" name="reg_password1" ng-model="sign.account.regPassword1" ng-pattern="/^[a-zA-Z0-9]{6,10}$/" required="" class="form-control" />
+	               <span class="fa fa-lock form-control-feedback text-muted"></span>
+	               <span ng-show="sign.registerForm.reg_password1.$dirty &amp;&amp; sign.registerForm.reg_password1.$error.required" class="text-danger">This field is required</span>
+	               <span ng-show="sign.registerForm.reg_password1.$dirty &amp;&amp; sign.registerForm.reg_password1.$error.pattern" class="text-danger">Input should match 'a-zA-Z0-9' and 6-10 length</span>
+	            </div>
+	            <div class="form-group has-feedback">
+	               <label class="text-muted">Retype Password</label>
+	               <input type="password" name="reg_password2" ng-model="sign.account.regPassword2" ui-validate="'$value==sign.account.regPassword1'" ui-validate-watch="'password'" class="form-control" />
+	               <span class="fa fa-lock form-control-feedback text-muted"></span>
+	               <span ng-show="sign.registerForm.reg_password2.$dirty &amp;&amp; sign.registerForm.reg_password2.$error.validator" class="text-danger">Password does Not match</span>
+	            </div>
+	            <div class="clearfix">
+	               <div class="checkbox c-checkbox pull-left mt0">
+	                  <label>
+	                     <input type="checkbox" required="" name="reg_agreed" ng-model="sign.account.regAgreed" />
+	                     <span class="fa fa-check"></span><i class="text-decorate">I agree with the <a href="#" class="terms">terms</a></i>
+	                  </label>
+	               </div>
+	            </div>
+	            <div ng-show="sign.registerForm.reg_agreed.$dirty &amp;&amp; sign.registerForm.reg_agreed.$error.required" class="text-danger">You must agree the terms</div>
+	            <button type="submit" class="btn btn-block btn-primary mt-lg">Create account</button>
+	         </form>
+	         <div ng-show="sign.authMsg" class="alert alert-danger text-center">{{sign.authMsg}}</div>
+	         <p class="pt-lg text-center text-decorate">Have an account?</p>
+	         <!--a ui-sref="page.login" class="btn btn-block btn-default">Signup</a-->
+	         <a ng-click="sign.toggleSign()" class="btn btn-block btn-default">Login Now</a>
+	      </div>
+	   </div>
+	   <!-- END panel-->
+	</div>
+</div>
+
+<!--jQuery defined here-->
+<script type="text/javascript" src="plugin/sideshow/js/TweenLite.min.js"></script>
+<script type="text/javascript" src="plugin/sideshow/js/EasePack.min.js"></script>
+<script type="text/javascript" src="plugin/sideshow/js/rAF.js"></script>
+<script type="text/javascript" src="plugin/sideshow/js/demo-1.js"></script>
+<!--script type="text/javascript" src="js/sign.js"></script-->

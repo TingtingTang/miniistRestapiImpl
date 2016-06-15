@@ -1,0 +1,50 @@
+<h1>*** Mini IST Dashboard Landscape ***</h1>
+
+<h3>.... This is the top level dashboard ....</h3>
+
+<div class="wrapper dashboard" ng-controller="MistDashboardController as dashboard">
+    <button class="btn-default btn-sm" ng-click="dashboard.togglePopShow()">Toggle popShow</button>
+
+    <!--<div class="dash-header">-->
+    <!--<h5>Machine List</h5>-->
+    <!--<a class="add-machine" ng-click="dashboard.togglePopShow()">Add Machine</a>-->
+    <!--</div>-->
+
+    <!--@ popup for adding machine-->
+    <div class="row popup machine-add" ng-show="popShow">
+        <div class="col-xs-0 col-sm-2 col-md-2 col-lg-2 place-hold"></div>
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 panel-col">
+            <div id="panelDemo10" class="panel panel-info">
+                <div class="panel-heading text-center">Add Machine</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 one-col">
+                            <input type="text" placeholder="machine name" class="form-control" ng-model="addMachineName" />
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 one-col">
+                            <input type="text" placeholder="hostname" class="form-control" ng-model="addMachineHost" />
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 one-col">
+                            <input type="text" placeholder="machine ip" class="form-control" ng-model="addMachineIP" />
+                        </div>
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 one-col">
+                            <input type="text" placeholder="description" class="form-control" ng-model="addMachineDesc" />
+                        </div>
+                    </div>
+                    <div class="row btn-block">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                            <button type="button" class="btn btn-pill-left btn-info">
+                                <span class="fa fa-check-circle"></span> Confirm
+                            </button>
+                            <button type="button" class="btn btn-pill-right btn-default" ng-click="popShow=false">
+                                Cancel <span class="fa fa-times-circle"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--& popup for adding machine-->
+
+</div>

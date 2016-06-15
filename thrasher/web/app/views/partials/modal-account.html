@@ -1,0 +1,53 @@
+<div class="modal fade" id="deleteaccountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Are you sure you want to do this?</h4>
+            </div>
+            <div class="deleteaccount_warning alert alert-warning">
+                <span class="fa fa-warning warn_icon"></span><span>This is extremely important.</span>
+            </div>
+            <p>We will <strong>immediately delete your account</strong>, along with all of your data, history, issues, and miniIST Pages sites.</p>
+            <div class="modal-footer">
+                <form>
+                    <div class="form-group">
+                        <label for="deleteaccount_name" class="pull-left">Your username or email:</label>
+                        <input disabled type="text" class="form-control" id="deleteaccount_name" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="deleteaccount_type" class="pull-left">To verify, type <span class="text-danger">delete my account</span> below:</label>
+                        <input type="text" class="form-control" id="deleteaccount_type" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="deleteaccount_password" class="pull-left">Confirm your password::</label>
+                        <input onfocus="this.type='password'" class="form-control" id="deleteaccount_password" autocomplete="off">
+                    </div>
+                    <button type="button" id="okdelete" class="btn btn-default form-control" data-placement="top">Delete this account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- change password notify modal-->
+<div class="modal fade" id="changepassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Are you sure to change password?</h4>
+            </div>
+            <div class="deleteaccount_warning alert alert-warning">
+                <span class="fa fa-warning warn_icon"></span><span>This is extremely important.</span>
+            </div>
+            <p>We will <strong>immediately change your account</strong>, but we don't change any of your data in miniIst site.</p>
+            <p>Sure to do it?</p>
+            <div class="modal-footer">
+                <form>
+                    <button type="button" id="okChange" class="btn btn-default form-control" data-toggle="popover" data-placement="top">Change password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+.wrapper.user-profile .panelHeading{
+    /*padding: 0 0;*/
+    background-color: #F5F5F5 !important;
+}
+.wrapper.user-profile .container{
+    margin-top: 30px;
+}
+#portrait{
+    padding-left: 0 !important;
+    margin-right: 25px !important;
+    width: 70px;
+    height: 70px;
+    background-image: url("../img/port2.png");
+}
+#portraitInputFileH{
+    display: none;
+}
+#portraitInputFileS{
+    height: 34px;
+    width: 146px;
+    background-color: #F9F9F9;
+    border: 1px solid #E2E1E1;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+.wrapper.user-profile .btn-profile{
+    background: -webkit-radial-gradient(#79CB5D, #65B549); /* Safari 5.1 - 6.0 */
+    background: -o-radial-gradient(#79CB5D, #65B549); /* Opera 11.6 - 12.0 */
+    background: -moz-radial-gradient(#79CB5D, #65B549); /* Firefox 3.6 - 15 */
+    background: radial-gradient(#79CB5D, #65B549); /* ��׼���﷨������������ */
+}
+.wrapper.user-profile .form-control{
+    width: 680px !important;
+}
+@media (min-width: 768px) {
+    .containerZ {
+        width: 500px;
+    }
+}
+.wrapper.user-profile .containerZ{
+    padding-left: 0;
+    margin-top: 5px;
+}
+.wrapper.user-profile .panel-body form input{
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    -webkit-border-radius: 3px !important;
+    -moz-border-radius: 3px !important;
+    border-radius: 3px !important;
+}
+.wrapper.user-profile .panel-body form input:focus{
+    background-color: #ffffff;
+}
+.wrapper.user-profile .panel-body form select{
+    /*background-color: #FAFAFA;*/
+    border: 1px solid #DDDDDD;
+    -webkit-border-radius: 3px !important;
+    -moz-border-radius: 3px !important;
+    border-radius: 3px !important;
+}
+.wrapper.user-profile .form-group select{
+    width: 320px !important;
+}
+.wrapper.user-profile .note {
+    min-height: 17px;
+    margin: 12px 0 2px;
+    font-size: 12px;
+    color: #767676;
+}
+.wrapper.user-profile .timeshow{
+    height: 58px;
+    width: 560px;
+    background-color: #dddddd;
+    line-height: 58px;
+    -webkit-border-radius: 3px !important;
+    -moz-border-radius: 3px !important;
+    border-radius: 3px !important;
+}
+.wrapper.user-profile .getProfile{
+    background-color: #000000;
+    opacity: 0.2 !important;
+}
+.wrapper.user-profile .getProfile div{
+    overflow: auto;
+    position: fixed;
+    margin-left: 45%;
+    margin-top: 25%;
+}
+.wrapper.user-profile .getProfile div #loading_text{
+    display: inline-block;
+    margin-left: 16px;
+    font-size: 26px;
+    color: #ffffff;
+    font-style: italic;
+    font-weight: bolder;
+}

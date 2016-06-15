@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="angle">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="{{app.description}}">
+   <meta name="keywords" content="app, responsive, angular, bootstrap, dashboard, admin">
+   <title data-ng-bind="::pageTitle()">mini-IST Web Application</title>
+   
+   <!-- Bootstrap styles-->
+   <link type="text/css" rel="stylesheet" href="css/bootstrap.css" data-ng-if="!app.layout.isRTL">
+   <link type="text/css" rel="stylesheet" href="css/bootstrap-rtl.css" data-ng-if="app.layout.isRTL">
+   <!-- Application styles-->
+   <link type="text/css" rel="stylesheet" href="css/app.css" data-ng-if="!app.layout.isRTL">
+   <!--link type="text/css" rel="stylesheet" href="css/app-jquery.css" data-ng-if="!app.layout.isRTL"-->
+   <link type="text/css" rel="stylesheet" href="css/app-rtl.css" data-ng-if="app.layout.isRTL">
+   <!-- Themes-->
+   <link type="text/css" rel="stylesheet" ng-href="{{app.layout.theme}}" data-ng-if="app.layout.theme">
+   
+   <!-- mini IST User defined-->
+   <link type="text/css" rel="stylesheet" href="vendor/angular-xeditable/dist/css/xeditable.css">
+   <link type="text/css" rel="stylesheet" href="css/custom.css">
+   <link type="text/css" rel="stylesheet" href="css/profile-github.css">
+    <link type="text/css" rel="stylesheet" href="css/useraccount.css">
+</head>
+
+<body data-ng-class="{ 
+	'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 
+	'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat, 
+	'offsidebar-open': app.offsidebarOpen, 'aside-toggled': app.asideToggled}">
+   <!--<div data-preloader></div>-->
+   <div data-ui-view="" data-autoscroll="false" class="wrapper"></div>
+   
+   <!--template js-->
+   <!--script src="app/js/base.js"></script-->
+   <script type="text/javascript" src="dist/js/base.min.js"></script>
+   <!--script type="text/javascript" src="js/base.js"></script-->
+   <script type="text/javascript" src="dist/js/angular-local-storage.min.js"></script>	<!--angular local storage-->
+
+   <!--Application Specifics-->
+   <script type="text/javascript" src="plugin/moment.js"></script>	<!--moment.js-->
+   <script type="text/javascript" src="js/app.js"></script>
+   <script type="text/javascript" src="js/custom.js"></script>	<!--customized AngularJS and jQuery for mini IST-->
+
+   <script src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+   <!--<script src="vendor/jquery-validate/dist/jquery.validate.js"></script>-->
+   <!--==secret info==-->
+   <div class="hidden secret-info">
+   		<span id="userToken">{{uToken}}</span>
+   		<span id="userLoginName">{{uName}}</span>
+   </div>
+   <div ng-include="'views/partials/modal-account.html'" style="position: absolute; bottom: 0"></div>
+
+</body>
+
+</html>

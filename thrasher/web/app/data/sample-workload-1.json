@@ -1,0 +1,31 @@
+{
+  "id": "573b0bba9f72ddeac1002ec1",
+  "name": "workload_test01",
+  "creator": "mike32432487293",
+  "modifier": "mike32432487293",
+  "create_time": "2016-05-17T20:16:58.43+08:00",
+  "update_time": "2016-05-17T20:16:58.43+08:00",
+  "team": "testteam01",
+  "desc": "desc01",
+  "run_as_user": "mega",
+  "setup_script": "setupScript",
+  "env_script": "envScript",
+  "clean_script": "cleanScript",
+  "exe_script": "exeScript",
+  "testsuites": [
+    {
+      "id": "560d34ce0699616af8b86843",
+      "name": "ts22",
+      "weight": 100
+    },
+    {
+      "id": "560d34ce0699616af8b86842",
+      "name": "ts23",
+      "weight": 200
+    }
+  ],
+  "machine": ["sy01","sy02","sy03"],
+  "tag": ["tagA","tagB"],
+  "ret": 0,
+  "info": "OK"
+}
