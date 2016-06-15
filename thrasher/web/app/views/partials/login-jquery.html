@@ -1,0 +1,120 @@
+<!--===================== mini IST user customized=====================-->
+
+<!--@ just for background sideshow-->
+<div class="container sideshow">
+	<div class="content">
+		<div id="connect-tree" class="connect-tree">
+			<canvas id="tree-canvas"></canvas>
+		</div>
+	</div>
+</div>
+<!--& just for background sideshow-->
+
+<!--one page-->
+<div class="block-center mt-xl wd-xl one-page active login">
+	<!-- START panel-->
+    <div class="panel panel-transparent panel-flat">
+        <div class="panel-heading text-center">
+           <a href="#">
+              <img src="img/logo-mini.png" alt="Image" class="block-center img-rounded">
+           </a>
+        </div>
+        <div class="panel-body">
+           <h5 class="text-center pv text-decorate">Log In to Continue.</h5>
+           <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+              <div class="form-group has-feedback">
+                 <input id="loginUserInput" type="text" placeholder="Enter email or Username" autocomplete="off" required class="form-control">
+                 <span class="fa fa-lock form-control-feedback text-muted"></span>
+              </div>
+              <div class="form-group has-feedback">
+                 <input id="loginInputPassword1" type="password" placeholder="Password" required class="form-control">
+                 <span class="fa fa-lock form-control-feedback text-muted"></span>
+              </div>
+              <div class="clearfix">
+                 <div class="checkbox c-checkbox pull-left mt0">
+                    <label>
+                       <input type="checkbox" value="" name="remember">
+                       <span class="fa fa-check"></span><i class="text-decorate">Remember Me</i>
+                    </label>
+                 </div>
+                 <div class="pull-right"><a href="recover.html" class="text-muted">Forgot your password?</a>
+                 </div>
+              </div>
+              <button type="submit" class="btn btn-block btn-primary mt-lg login click-go">Login</button>
+           </form>
+           <p class="pt-lg text-center text-decorate">No Account?</p><a href="#" class="btn btn-block btn-default to-register">Register Now</a>
+        </div>
+     </div>
+     <!-- END panel-->
+     <!--div class="p-lg text-center">
+        <span>&copy;</span>
+        <span>2016</span>
+        <span>-</span>
+        <span>z/OS SVT</span>
+        <br>
+        <span>mini IST Web Application</span>
+     </div-->
+</div>
+
+<!--one page-->
+<div class="block-center mt-xl wd-xl one-page hidden register">
+     <!-- START panel-->
+     <div class="panel panel-transparent panel-flat">
+        <div class="panel-heading text-center">
+           <a href="#">
+              <img src="img/logo-mini.png" alt="Image" class="block-center img-rounded">
+           </a>
+        </div>
+        <div class="panel-body">
+           <h5 class="text-center pv text-decorate">Register to Get Access.</h5>
+           <form role="form" data-parsley-validate="" novalidate="" class="mb-lg">
+              <div class="form-group has-feedback">
+                 <label for="signupInputUsername" class="text-muted">User Name</label>
+                 <input id="signupInputUsername" type="text" placeholder="User Name" autocomplete="off" required class="form-control">
+                 <span class="fa fa-lock form-control-feedback text-muted"></span>
+              </div>
+              <div class="form-group has-feedback">
+                 <label for="signupInputEmail1" class="text-muted">Email address</label>
+                 <input id="signupInputEmail1" type="email" placeholder="Enter email" autocomplete="off" required class="form-control">
+                 <span class="fa fa-envelope form-control-feedback text-muted"></span>
+              </div>
+              <div class="form-group has-feedback">
+                 <label for="signupInputPassword1" class="text-muted">Password</label>
+                 <input id="signupInputPassword1" type="password" placeholder="Password" autocomplete="off" required class="form-control">
+                 <span class="fa fa-lock form-control-feedback text-muted"></span>
+              </div>
+              <div class="form-group has-feedback">
+                 <label for="signupInputRePassword1" class="text-muted">Retype Password</label>
+                 <input id="signupInputRePassword1" type="password" placeholder="Retype Password" autocomplete="off" required data-parsley-equalto="#signupInputPassword1" class="form-control">
+                 <span class="fa fa-lock form-control-feedback text-muted"></span>
+              </div>
+              <div class="clearfix">
+                 <div class="checkbox c-checkbox pull-left mt0">
+                    <label>
+                       <input type="checkbox" value="" required name="agreed">
+                       <span class="fa fa-check"></span><i class="text-decorate">I agree with the <a href="#" class="terms">terms</a></i>
+                    </label>
+                 </div>
+              </div>
+              <button type="submit" class="btn btn-block btn-primary mt-lg register click-go">Create account</button>
+           </form>
+           <p class="pt-lg text-center text-decorate">Have an account?</p><a href="#" class="btn btn-block btn-default to-login">Login</a>
+        </div>
+     </div>
+     <!-- END panel-->
+     <!--div class="p-lg text-center">
+        <span>&copy;</span>
+        <span>2016</span>
+        <span>-</span>
+        <span>z/OS SVT</span>
+        <br>
+        <span>mini IST Web Application</span>
+     </div-->
+</div>
+
+<!--jQuery defined here-->
+<script type="text/javascript" src="plugin/sideshow/js/TweenLite.min.js"></script>
+<script type="text/javascript" src="plugin/sideshow/js/EasePack.min.js"></script>
+<script type="text/javascript" src="plugin/sideshow/js/rAF.js"></script>
+<script type="text/javascript" src="plugin/sideshow/js/demo-1.js"></script>
+<script type="text/javascript" src="js/sign.js"></script>

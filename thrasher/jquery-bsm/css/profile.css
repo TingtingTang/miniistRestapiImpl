@@ -1,0 +1,49 @@
+.content-wrapper #head_pic{
+    height: 230px;
+    margin-top: 16px;
+    margin-bottom: 26px;
+}
+#portrait{
+    display: block;
+    width: 160px;
+    height: 160px;
+    background-color: #1f9c3d;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    background-image: url("../img/proi1.jpg")
+}
+#head_pic div a{
+    color: #3F48CC;
+    font-size: 16px;
+    /*font-weight: bold;*/
+    /*font-style: italic;*/
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 128px;
+    font-style: italic;
+}
+#head_pic{
+    margin-bottom: 20px;
+}
+#head_pic #motto{
+    /*direction: rtl;*/
+    margin-top: 80px;
+    resize: none;
+    width: 300px;
+    height: 80px;
+    background-color: transparent;
+    border: transparent;
+}
+.focus_motto{
+    background-color: #ffffff;
+    border: 1px solid #000;
+}
+
+#creattime_prof, #username,#type{
+    text-decoration: none;
+    color: #000;
+}
+#sex{
+    /*color: blue;*/
+}

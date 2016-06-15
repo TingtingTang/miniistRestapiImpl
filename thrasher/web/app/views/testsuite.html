@@ -1,0 +1,532 @@
+<h3>Test Suite
+   <small>Here shows the test suite(s) information for your testing.</small>
+</h3>
+<div class="wrapper testsuite" ng-controller="TestsuiteController as tsuite" >
+	<!--@ test suite list-->
+	<div class="row buttons animate init-hide" ng-cloak ng-show="topShow">
+		<div class="col-lg-4 col-md-4 col-sm-4 btn-col">
+			<button ng-click="tsuite.addTestsuite()" class="btn btn-success btn-sm">
+				<em class="fa fa-plus"></em>
+				Create TestSuite
+			</button>
+			<button ng-click="tsuite.tableParams.sorting({})" class="btn btn-primary btn-sm">Clear sorting</button>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-1 place-hold"></div>
+		<div class="col-lg-4 col-md-4 col-sm-4 clearfix">
+			<!--float right-->
+			<div class="list-set pagination pull-right">
+				<div uib-dropdown="dropdown" class="btn-group">
+					<button type="button" class="btn btn-labeled btn-default" ng-click="tsuite.fetchSet(currentSet, 'prev')">
+	               		<span class="btn-label"><i class="fa fa-arrow-left"></i></span>Prev
+	               	</button>
+	               	<button type="button" ng-disabled="disabled" uib-dropdown-toggle="" class="btn dropdown-toggle btn-default">{{currentSet}}
+	                  	<span class="caret"></span>
+	               	</button>
+	               	<ul role="menu" class="dropdown-menu">
+	                  	<li ng-repeat="set in pageset"><a ng-click="tsuite.fetchSet(set, 'this')">{{set}}</a></li>
+	               	</ul>
+	               	<button type="button" class="btn btn-labeled btn-default"  ng-click="tsuite.fetchSet(currentSet, 'next')">Next
+	               		<span class="btn-label btn-label-right"><i class="fa fa-arrow-right"></i></span>
+	            	</button>
+	            </div>
+			</div>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-1">
+			<div class="ph" uib-popover="total Number" popover-trigger="mouseenter">
+				<p class="m0 text-muted">
+					<em class="icon-layers mr fa-lg"></em>{{ totalNum }}
+				</p>
+			</div>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-1">
+			<div class="ph" uib-popover="owned by me" popover-trigger="mouseenter">
+				<p class="m0 text-muted">
+					<em class="icon-user mr fa-lg"></em>{{ myown }}
+				</p>
+			</div>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-1">
+			<div class="ph" uib-popover="used by me" popover-trigger="mouseenter">
+				<p class="m0 text-muted">
+					<em class="icon-drawar mr fa-lg"></em>{{ myuse }}
+				</p>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row testsuite-list">
+		<!--@ left: main list-->
+		<div class="col-lg-9 col-md-9 col-sm-9 table-col animate" ng-cloak ng-show="leftShow">
+			<table class="table table-bordered table-hover bg-white" ng-table="tsuite.tableParams" show-filter="true">
+		      	<tr ng-repeat="testsuite in $data">
+		        	<td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }" style="width:15%">
+		            	<span e-required="">{{ testsuite.name || &apos;default&apos; }}</span>
+		         	</td>
+		         	<td data-title="'Creator'" sortable="'creator'" filter="{ 'creator': 'text' }" style="width:15%">
+		            	<span>{{ testsuite.creator }}</span>
+		         	</td>
+		         	<td data-title="'Team'" sortable="'team'" filter="{ 'team': 'text' }" style="width:15%">
+		            	<span>{{ testsuite.team }}</span>
+		         	</td>
+		         	<td data-title="'Library'" sortable="'library'" filter="{ 'library': 'text' }" style="width:15%">
+		            	<span>{{ testsuite.library }}</span>
+		         	</td>
+		         	<td data-title="'Update time'" sortable="'update_time'" filter="{ 'update_time': 'text' }" style="width:30%">
+		         		<span>{{ testsuite.update_time | date: 'yyyy-MM-dd HH:mm:ss Z' }}</span>
+		         	</td>
+		         	<td data-title="'operation'" style="white-space: nowrap" style="width:10%">
+		            	<div class="buttons">
+		               		<button ng-click="tsuite.checkAndxEdit($index, testsuite.name, testsuite.id)" title="Check" class="btn btn-sm btn-default">
+		                 		<em class="fa fa-eye"></em>
+		               		</button>
+		               		<button ng-click="tsuite.removeTestsuite($index, testsuite.name, testsuite.id)" title="Delete" class="btn btn-sm btn-warning">
+		                  		<em class="fa fa-trash"></em>
+		               		</button>
+		            	</div>
+		         	</td>
+		      	</tr>
+	    	</table>
+		</div>
+		<!--& right: main list-->
+		
+		<!--@ right: aside info-->
+		<aside class="col-xs-0 col-sm-3 col-md-3 col-lg-3 right-col">
+			<!--Monthly Update-->
+			<div class="panel panel-default stats" ng-class="{'panel-shown':rightShow}">
+				<div class="panel-body">
+					<a href="#" class="text-muted pull-right">
+						<em class="fa fa-arrow-right"></em>
+					</a>
+					<div class="text-info">Monthly Updates</div>
+					<canvas classyloader="" class="center-block" width="200" height="200"
+						data-percentage="47"
+						data-speed="20"
+						data-font-size="40px"
+					 	data-diameter="70"
+					 	data-line-color="{{colorByName('info')}}"
+					 	data-remaining-line-color="rgba(200,200,200,0.4)"
+					 	data-line-width="10"
+           			 	data-rounded-line="true">
+           			</canvas>
+           			<div sparkline="" class="text-center"
+           				data-bar-color="{{colorByName('info')}}" 
+           				data-height="30" data-bar-width="5" data-bar-spacing="2" 
+           				values="5,4,8,7,8,5,4,6,5,5,9,4,6,3,4,7,5,4,7">
+           			</div>
+				</div>
+				<div class="panel-footer">
+					<p class="text-muted">
+						<em class="fa fa-upload fa-fw"></em>
+               			<span>This Month</span>
+               			<span class="text-dark animate" ng-show="rightShow">5 updates</span>
+					</p>
+				</div>
+			</div>
+			<!--Latest Update-->
+			<div class="panel panel-default stats" ng-class="{'panel-shown':rightShow}">
+				<div class="panel-heading">
+					<div class="panel-title">Latest Updates</div>
+				</div>
+				<div class="list-group">
+					<!--one group item-->
+					<div class="list-group-item">
+						<div class="media-box">
+							<!--ICON-->
+							<div class="pull-left">
+								<span class="fa-stack">
+                        			<em class="fa fa-circle fa-stack-2x text-success"></em>
+                        			<em class="fa fa-check fa-stack-1x fa-inverse text-white"></em>
+                     			</span>
+							</div>
+							<!--CONTENT-->
+							<div class="media-box-body clearfix">
+								<small class="text-muted pull-right ml">1 day</small>
+								<div class="media-box-heading">
+									<a href="#" class="text-success m0">NEW ADD: BERDPAWS bucket</a>
+                     			</div>
+                     			<p class="m0">
+		                        	<small><a href="#">by fuxxbj</a></small>
+		                     	</p>
+							</div>
+						</div>
+					</div>
+					<!--one group item-->
+					<div class="list-group-item">
+						<div class="media-box">
+							<!--ICON-->
+							<div class="pull-left">
+								<span class="fa-stack">
+                        			<em class="fa fa-circle fa-stack-2x text-success"></em>
+                        			<em class="fa fa-check fa-stack-1x fa-inverse text-white"></em>
+                     			</span>
+							</div>
+							<!--CONTENT-->
+							<div class="media-box-body clearfix">
+								<small class="text-muted pull-right ml">5 days</small>
+								<div class="media-box-heading">
+									<a href="#" class="text-success m0">NEW ADD: JAVA COBOL</a>
+                     			</div>
+                     			<p class="m0">
+		                        	<small><a href="#">by fuxxbj</a></small>
+		                     	</p>
+							</div>
+						</div>
+					</div>
+					<!--one group item-->
+					<div class="list-group-item">
+						<div class="media-box">
+							<!--ICON-->
+							<div class="pull-left">
+								<span class="fa-stack">
+                        			<em class="fa fa-circle fa-stack-2x text-warning"></em>
+                        			<em class="fa fa-edit fa-stack-1x fa-inverse text-white"></em>
+                     			</span>
+							</div>
+							<!--CONTENT-->
+							<div class="media-box-body clearfix">
+								<small class="text-muted pull-right ml">2 weeks</small>
+								<div class="media-box-heading">
+									<a href="#" class="text-warning m0">UPDATED: CLOBBER</a>
+                     			</div>
+                     			<p class="m0">
+		                        	<small><a href="#">by hyebj</a></small>
+		                     	</p>
+							</div>
+						</div>
+					</div>
+					<!--one group item-->
+					<div class="list-group-item">
+						<div class="media-box">
+							<!--ICON-->
+							<div class="pull-left">
+								<span class="fa-stack">
+                        			<em class="fa fa-circle fa-stack-2x text-danger"></em>
+                        			<em class="fa fa-exclamation fa-stack-1x fa-inverse text-white"></em>
+                     			</span>
+							</div>
+							<!--CONTENT-->
+							<div class="media-box-body clearfix">
+								<small class="text-muted pull-right ml">1 week</small>
+								<div class="media-box-heading">
+									<a href="#" class="text-danger m0">REMOVED: SMB</a>
+                     			</div>
+                     			<p class="m0">
+		                        	<small><a href="#">by fuxxbj</a></small>
+		                     	</p>
+							</div>
+						</div>
+					</div>
+					<!--one group item-->
+				</div>
+				<div class="panel-footer clearfix">
+					<em class="fa fa-paw pull-left text-info"></em>
+					<a href="#" class="pull-right"><small>more</small></a>
+				</div>
+			</div>
+		</aside>
+		<!--& right: aside info-->
+	</div>
+	<!--& test suite list-->
+	
+	<!--@ RIGHT sliding panel-->
+	<div id="testsuiteSlidePanel" class="panel panel-default aside-slide" ng-class="{'panel-slide-shown':isPanelSlideShown}">
+		<div ng-class="{'panel-heading-collapsed':isPanelCollapsed}" class="panel-heading">
+			{{thisSuite.name}}
+			<paneltool tool-refresh="standard" tool-collapse="tool-collapse" tool-dismiss="tool-dismiss"></paneltool>
+		</div>
+		<div uib-collapse="testsuiteSlidePanel" class="panel-wrapper">
+			<div class="panel-body">
+				<uib-tabset type="pills">
+					<uib-tab heading="Basic" class="one-tab">
+						<!--one row-->
+						<div class="row hidden">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label>id</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+                 				<span>{{thisSuite.id}}</span>
+                 				<span>{{thisSuite.index}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label>name</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+                 				<span editable-text="thisSuite.name" e-name="name" e-form="slideForm">{{thisSuite.name}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label>creator</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+                 				<span>{{thisSuite.creator}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label>modifier</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+                 				<span>{{thisSuite.modifier}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label class="text-right"><em class="fa fa-clock-o"></em> created</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+                 				<span>{{thisSuite.create_time | date: 'yyyy-MM-dd HH:mm:ss Z'}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label class="text-right"><em class="fa fa-clock-o"></em> updated</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+                 				<span>{{thisSuite.update_time | date: 'yyyy-MM-dd HH:mm:ss Z'}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label>tag</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8 clearfix">
+             					<em class="label label-default pull-left" ng-repeat="thisTag in thisSuite.tag">
+             						<span class="one-tag" editable-text="thisTag" e-name="tag" e-form="slideForm">{{thisTag}}</span>
+             						<em class="icon-close" ng-click="tsuite.removeTag($index, thisTag)" ng-show="slideForm.$visible"></em>
+             					</em>
+             					<em class="icon-plus" ng-click="tsuite.newTag()" ng-show="slideForm.$visible"></em>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label class="editable-controls">team</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+								<span editable-text="thisSuite.team" e-name="team" e-form="slideForm">{{thisSuite.team}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label class="editable-controls">library</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+								<span editable-text="thisSuite.library" e-name="lib" e-form="slideForm">{{thisSuite.library}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label class="editable-controls">description</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+								<span editable-textarea="thisSuite.desc" e-rows="2" e-cols="25" e-name="desc" e-form="slideForm">{{thisSuite.desc}}</span>
+              				</div>
+						</div>
+					</uib-tab>
+					<uib-tab heading="Script" class="one-tab">
+						<div class="row-masonry row-masonry-xl-1 row-masonry-lg-1 row-masonry-md-1 row-masonry-sm-1">
+							<!--one masonry-->
+							<div class="col-masonry">
+								<div class="box-placeholder m0">
+									<p class="text-center">
+										<strong class="editable-controls">Setup Script</strong>
+									</p>
+									<p class="content">
+										<span editable-textarea="thisSuite.setup_script" e-rows="2" e-cols="40" e-name="sscript" e-form="slideForm">
+											{{thisSuite.setup_script}}
+										</span>
+									</p>
+								</div>
+							</div>
+							<!--one masonry-->
+							<div class="col-masonry">
+								<div class="box-placeholder m0">
+									<p class="text-center">
+										<strong class="editable-controls">Clean Script</strong>
+									</p>
+									<p class="content">
+										<span editable-textarea="thisSuite.clean_script" e-row="2" e-cols="40" e-name="cscript" e-form="slideForm">
+											{{thisSuite.clean_script}}
+										</span>
+									</p>
+								</div>
+							</div>
+							<!--one masonry-->
+							<div class="col-masonry">
+								<div class="box-placeholder m0">
+									<p class="text-center">
+										<strong class="editable-controls">EXE Script</strong>
+									</p>
+									<p class="content">
+										<span editable-textarea="thisSuite.exe_script" e-row="2" e-cols="40" e-name="escript" e-form="slideForm">
+											{{thisSuite.exe_script}}
+										</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</uib-tab>
+				</uib-tabset>
+			</div>
+			<div class="panel-footer">
+				<!--xeditable form-->
+				<form editable-form="" name="slideForm" onaftersave="tsuite.saveTestsuite()"
+		        	ng-show="slideForm.$visible" class="form-buttons form-inline">
+		        	<button type="submit" ng-disabled="slideForm.$waiting" title="Save" class="btn btn-sm btn-warning">
+                  		<em class="fa fa-save"></em>
+               		</button>
+               		<button type="button" ng-disabled="slideForm.$waiting" ng-click="slideForm.$cancel()" title="Cancel" class="btn btn-sm btn-default">
+                  		<em class="fa fa-times"></em>
+               		</button>
+		        </form>
+		        <div ng-show="!slideForm.$visible" class="buttons">
+		        	<button ng-click="slideForm.$show()" title="Edit" class="btn btn-sm btn-default">
+		            	<em class="fa fa-pencil"></em>
+		            </button>
+		        </div>
+			</div>
+		</div>
+	</div>
+	<!--& RIGHT sliding panel-->
+	
+	<!--@ popup for adding testsuite-->
+	<div class="row popup testsuite-add init-hide" ng-cloak ng-show="popShow">
+		<div class="col-xs-0 col-sm-2 col-md-2 col-lg-2 place-hold"></div>
+		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 panel-col">
+			<!-- START panel-->
+			<div class="panel panel-default relative-pos">
+				<div class="panel-heading">
+					<h4>Create TestSuite</h4>
+				</div>
+				<div class="panel-body">
+					<form name="newsuite_form" form-wizard="" steps="3" novalidate ng-submit="tsuite.submitAddTestsuite(newsuite_form)">
+						<div class="form-wizard wizard-vertical">
+							<!--go back-->
+							<span class="btn btn-labeled btn-default click-cancel" ng-click="tsuite.cancelTestsuite(); resetForm(newsuite_form); wizard.go(1)">
+								<i class="fa fa-times"></i>
+							</span>
+							<!-- GUIDE -->
+							<ol>
+								<li ng-class="{'active':wizard.active(1)}" ng-click="wizard.go(1)"><h4 class="mb0">Basic</h4></li>
+								<li ng-class="{'active':wizard.active(2)}" ng-click="wizard.go(2)"><h4 class="mb0">Script</h4></li>
+								<li ng-class="{'active':wizard.active(3)}" ng-click="wizard.go(3)"><h4 class="mb0">Done!</h4></li>
+							</ol>
+							<!-- ONE Step -->
+							<div ng-show="wizard.active(1)">
+								<fieldset>
+									<div class="form-group">
+										<label>Name <em class="text-danger">*</em></label>
+										<div class="controls">
+											<input type="text" name="name" ng-model="newsuite.name" placeholder="Testsuite name" class="form-control" 
+												ng-minlength=3 ng-maxlength=20 required />
+											<div class="error" ng-show="newsuite_form.name.$dirty && newsuite_form.name.$invalid">
+												<small class="error text0" ng-show="newsuite_form.name.$error.required">This is required.</small>
+												<small class="error text0" ng-show="newsuite_form.name.$error.minlength">This is required to be at least 3 characters.</small>
+												<small class="error text0" ng-show="newsuite_form.name.$error.maxlength">This cannot be longer than 20 characters.</small>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Team <em class="text-danger">*</em></label>
+										<div class="controls">
+											<input type="text" name="team" ng-model="newsuite.team" placeholder="Your team" class="form-control"
+												ng-minlength=3 ng-maxlength=20 required />
+											<div class="error" ng-show="newsuite_form.team.$dirty && newsuite_form.team.$invalid">
+												<small class="error text0" ng-show="newsuite_form.team.$error.required">This is required.</small>
+												<small class="error text0" ng-show="newsuite_form.team.$error.minlength">This is required to be at least 3 characters.</small>
+												<small class="error text0" ng-show="newsuite_form.team.$error.maxlength">This cannot be longer than 20 characters.</small>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Library</label>
+										<div class="controls">
+											<input type="text" ng-model="newsuite.lib" placeholder="Testsuite library" class="form-control" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Tag</label>
+										<div class="controls">
+											<input type="text" ng-model="newsuite.tag" placeholder="Tag(s) with space delimited" class="form-control" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Description</label>
+										<div class="controls">
+											<textarea ng-model="newsuite.desc" class="form-control" rows="3"></textarea>
+										</div>
+									</div>
+								</fieldset>
+								<ul class="pager">
+									<li class="next"><a ng-click="wizard.go(2)">Next <span>&rarr;</span></a></li>
+								</ul>
+							</div>
+							<!-- ONE Step -->
+							<div ng-show="wizard.active(2)">
+								<fieldset>
+									<div class="form-group">
+										<label>Setup Script</label>
+										<div class="controls">
+											<textarea ng-model="newsuite.sscript" class="form-control" rows="2"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Clean Script</label>
+										<div class="controls">
+											<textarea ng-model="newsuite.cscript" class="form-control" rows="2"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Execution Script <em class="text-danger">*</em></label>
+										<div class="controls">
+											<textarea name="escript" ng-model="newsuite.escript" class="form-control" rows="2" required></textarea>
+											<div class="error" ng-show="newsuite_form.escript.$dirty && newsuite_form.escript.$invalid">
+												<small class="error text0" ng-show="newsuite_form.escript.$error.required">This is required.</small>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Testcase</label>
+										<div class="controls">
+											<input type="text" ng-model="newsuite.testcase" placeholder="Testcase(s) with space delimited" class="form-control" />
+										</div>
+									</div>
+								</fieldset>
+								<ul class="pager">
+									<li class="previous"><a ng-click="wizard.go(1)"><span>&larr; Previous</span></a></li>
+									<li class="next"><a ng-click="wizard.go(3)">Next <span>&rarr;</span></a></li>
+								</ul>
+							</div>
+							<!-- ONE Step -->
+							<div ng-show="wizard.active(3)">
+								<div class="jumbotron m0">
+									<h3 class="mt0">Done!</h3>
+									<p>Click below button to confirm creation! Or step back for modification.</p>
+									<p class="m0">
+										<button type="submit" ng-disabled="newsuite_form.$invalid" class="btn btn-success" ng-click="wizard.go(1);">Confirm</button>
+									</p>
+								</div>
+								<ul class="pager">
+									<li class="previous"><a ng-click="wizard.go(2)"><span>&larr; Previous</span></a></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<!-- END panel -->
+		</div>
+	</div>
+	<!--& popup for adding testsuite-->
+</div>

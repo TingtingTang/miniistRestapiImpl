@@ -1,0 +1,186 @@
+{
+	"ret": "0",
+	"info": "OK",
+	"workloads": [
+		{
+			"id": "573b0bba9f72ddeac1002ec1",
+			"name": "workload_test01",
+			"creator": "mike32432487293",
+			"modifier": "mike32432487293",
+			"create_time": "2016-05-17T20:16:58.43+08:00",
+			"update_time": "2016-05-17T20:16:58.43+08:00",
+			"team": "testteam01",
+			"desc": "desc01 : This is sample description for the workload",
+			"run_as_user":   "mega",
+			"tag":    ["tagA", "tagB"],
+			"setup_script":"setupScript",
+			"clean_script":"cleanScript",
+			"exe_script":  "exeScript",
+			"env_script":  "envScript",
+			"group": ["group1","group2","group3"],
+			"machine": ["sy01", "sy02", "sy03", "sy04", "sy05", "sy06", "sy07", "sy08", "sy09"],
+			"testsuites": [
+				{
+					"id": "560d34ce0699616af8b86843",
+					"name": "ts22",
+					"weight": 100
+				},
+				{
+					"id": "560d34ce0699616af8b86842",
+					"name": "ts23",
+					"weight": 200
+				},
+				{
+					"id": "560d34ce0699616af8b86843",
+					"name": "ts24",
+					"weight": 100
+				},
+				{
+					"id": "560d34ce0699616af8b86842",
+					"name": "ts25",
+					"weight": 200
+				},
+				{
+					"id": "560d34ce0699616af8b86843",
+					"name": "ts26",
+					"weight": 100
+				},
+				{
+					"id": "560d34ce0699616af8b86842",
+					"name": "ts27",
+					"weight": 200
+				},
+				{
+					"id": "560d34ce0699616af8b86843",
+					"name": "ts28",
+					"weight": 100
+				},
+				{
+					"id": "560d34ce0699616af8b86842",
+					"name": "ts29",
+					"weight": 200
+				}
+			]
+		},
+		{
+			"id": "573b0bba9f72ddeac1002ec1",
+			"name": "workload_test02",
+			"creator": "mike32432487293",
+			"modifier": "mike32432487293",
+			"create_time": "2016-05-17T20:16:58.43+08:00",
+			"update_time": "2016-05-17T20:16:58.43+08:00",
+			"team": "testteam02",
+			"desc": "desc02 : This is sample description for the workload",
+			"run_as_user":   "mega",
+			"tag":    ["tagA", "tagB"],
+			"setup_script":"setupScript",
+			"clean_script":"cleanScript",
+			"exe_script":  "exeScript",
+			"env_script":  "envScript",
+			"group": ["group1","group2","group3"],
+			"machine": ["sy01", "sy02", "sy03"],
+			"testsuites": [
+				{
+					"id": "560d34ce0699616af8b86843",
+					"name": "ts22",
+					"weight": 100
+				},
+				{
+					"id": "560d34ce0699616af8b86842",
+					"name": "ts23",
+					"weight": 200
+				}
+			]
+		},
+		{
+			"id": "573b0bba9f72ddeac1002ec1",
+			"name": "workload_test03",
+			"creator": "mike32432487293",
+			"modifier": "mike32432487293",
+			"create_time": "2016-05-17T20:16:58.43+08:00",
+			"update_time": "2016-05-17T20:16:58.43+08:00",
+			"team": "testteam03",
+			"desc": "desc03 : This is sample description for the workload",
+			"run_as_user":   "mega",
+			"tag":    ["tagA", "tagB"],
+			"setup_script":"setupScript",
+			"clean_script":"cleanScript",
+			"exe_script":  "exeScript",
+			"env_script":  "envScript",
+			"group": ["group1","group2","group3"],
+			"machine": ["sy01", "sy02", "sy03"],
+			"testsuites": [
+				{
+					"id": "560d34ce0699616af8b86843",
+					"name": "ts22",
+					"weight": 100
+				},
+				{
+					"id": "560d34ce0699616af8b86842",
+					"name": "ts23",
+					"weight": 200
+				}
+			]
+		},
+		{
+			"id": "573b0bba9f72ddeac1002ec1",
+			"name": "workload_test04",
+			"creator": "mike32432487293",
+			"modifier": "mike32432487293",
+			"create_time": "2016-05-17T20:16:58.43+08:00",
+			"update_time": "2016-05-17T20:16:58.43+08:00",
+			"team": "testteam04",
+			"desc": "desc04 : This is sample description for the workload",
+			"run_as_user":   "mega",
+			"tag":    ["tagA", "tagB"],
+			"setup_script":"setupScript",
+			"clean_script":"cleanScript",
+			"exe_script":  "exeScript",
+			"env_script":  "envScript",
+			"group": ["group1","group2","group3"],
+			"machine": ["sy01", "sy02", "sy03"],
+			"testsuites": [
+				{
+					"id": "560d34ce0699616af8b86843",
+					"name": "ts22",
+					"weight": 100
+				},
+				{
+					"id": "560d34ce0699616af8b86842",
+					"name": "ts23",
+					"weight": 200
+				}
+			]
+		},
+		{
+			"id": "573b0bba9f72ddeac1002ec1",
+			"name": "workload_test05",
+			"creator": "mike32432487293",
+			"modifier": "mike32432487293",
+			"create_time": "2016-05-17T20:16:58.43+08:00",
+			"update_time": "2016-05-17T20:16:58.43+08:00",
+			"team": "testteam05",
+			"desc": "desc05 : This is sample description for the workload",
+			"run_as_user":   "mega",
+			"tag":    ["tagA", "tagB"],
+			"setup_script":"setupScript",
+			"clean_script":"cleanScript",
+			"exe_script":  "exeScript",
+			"env_script":  "envScript",
+			"group": ["group1","group2","group3"],
+			"machine": ["sy01", "sy02", "sy03"],
+			"testsuites": [
+				{
+					"id": "560d34ce0699616af8b86843",
+					"name": "ts22",
+					"weight": 100
+				},
+				{
+					"id": "560d34ce0699616af8b86842",
+					"name": "ts23",
+					"weight": 200
+				}
+			]
+		}
+	]
+}

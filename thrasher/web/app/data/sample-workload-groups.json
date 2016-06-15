@@ -1,0 +1,770 @@
+{
+	"ret": "0",
+	"info": "OK",
+	"total_count": "1000",
+	"groups": [
+		{
+			"id": "mike0001",
+			"name": "mike-G1",
+			"team": "uss",
+			"creator": "mike",
+			"create_time": "2016-01-23T18:25:43.511Z",
+			"modifier": "mike",
+			"update_time": "2016-01-23T18:25:43.511Z",
+			"desc": "This is the 1st group of Mike",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec2",
+				  "name": "workload_test02"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "mike0002",
+			"name": "mike-G2",
+			"team": "uss",
+			"creator": "mike",
+			"create_time": "2016-02-23T18:25:43.511Z",
+			"modifier": "mike",
+			"update_time": "2016-02-23T18:25:43.511Z",
+			"desc": "This is the 2nd group of Mike",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec2",
+				  "name": "workload_test02"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zArt0001",
+			"name": "TEST",
+			"team": "uss",
+			"creator": "Jake",
+			"create_time": "2016-01-10T18:25:43.511Z",
+			"modifier": "Jake",
+			"update_time": "2016-01-13T18:25:43.511Z",
+			"desc": "Just a test category",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec2",
+				  "name": "workload_test02"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zArt0002",
+			"name": "KERNEL",
+			"team": "uss",
+			"creator": "Emma",
+			"create_time": "2016-01-10T18:25:43.511Z",
+			"modifier": "Emma",
+			"update_time": "2016-01-13T18:25:43.511Z",
+			"desc": "Kernel automations for continuous regression",
+			"workloads": []
+		},
+		{
+			"id": "zArti0003",
+			"name": "KERNEL STACKS ABOVE",
+			"team": "uss",
+			"creator": "Scheru",
+			"create_time": "2016-01-10T18:25:43.511Z",
+			"modifier": "Scheru",
+			"update_time": "2016-01-13T18:25:43.511Z",
+			"desc": "KERNEL BUCKETS RUNNING WITH KERNELSTACKS(ABOVE)",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec2",
+				  "name": "workload_test02"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec2",
+				  "name": "workload_test02"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec2",
+				  "name": "workload_test02"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zAru0004",
+			"name": "FILESYSTEM ZFS SYSPLEX l20",
+			"team": "uss",
+			"creator": "Webber",
+			"create_time": "2016-03-11T18:25:43.511Z",
+			"modifier": "Webber",
+			"update_time": "2016-03-20T18:25:43.511Z",
+			"desc": "In Continuous Regression, ZFS SYSPLEX filesystem.",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec2",
+				  "name": "workload_test02"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec2",
+				  "name": "workload_test02"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zAro0005",
+			"name": "FILESYSTEM ZFS NONSYSPLEX z0",
+			"team": "uss",
+			"creator": "Longman",
+			"create_time": "2016-03-11T18:25:43.511Z",
+			"modifier": "Longman",
+			"update_time": "2016-03-20T18:25:43.511Z",
+			"desc": "Single system Filesystem ZFS root",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				}
+			]
+		},
+		{
+			"id": "zAro0006",
+			"name": "LE 8tu",
+			"team": "uss",
+			"creator": "Danel",
+			"create_time": "2016-04-01T18:25:43.511Z",
+			"modifier": "Danel",
+			"update_time": "2016-04-05T18:25:43.511Z",
+			"desc": "LE Regression tests in Continuous Regression",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec2",
+				  "name": "workload_test02"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec2",
+				  "name": "workload_test02"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec2",
+				  "name": "workload_test02"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec3",
+				  "name": "workload_test03"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec4",
+				  "name": "workload_test04"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zArt0007",
+			"name": "FILESYSTEM HFS SYSPLEX o1m",
+			"team": "uss",
+			"creator": "Cook",
+			"create_time": "2016-04-01T18:25:43.511Z",
+			"modifier": "Cook",
+			"update_time": "2016-04-05T18:25:43.511Z",
+			"desc": "In Cont. Regression, HFS SYSPLEX filesystem",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zArt0008",
+			"name": "DRIVER CHECKOUT ytt",
+			"team": "uss",
+			"creator": "Doom",
+			"create_time": "2016-02-01T18:25:43.511Z",
+			"modifier": "Doom",
+			"update_time": "2016-02-05T18:25:43.511Z",
+			"desc": "driver checkout automations",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				}
+			]
+		},
+		{
+			"id": "mile0002",
+			"name": "mike-G2",
+			"team": "uss",
+			"creator": "mike",
+			"create_time": "2016-02-23T18:25:43.511Z",
+			"modifier": "mike",
+			"update_time": "2016-02-23T18:25:43.511Z",
+			"desc": "This is the 2nd group of Mike",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zAlt0001",
+			"name": "TEST gj-250",
+			"team": "uss",
+			"creator": "Jake",
+			"create_time": "2016-01-10T18:25:43.511Z",
+			"modifier": "Jake",
+			"update_time": "2016-01-13T18:25:43.511Z",
+			"desc": "Just a test category",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zAlt0002",
+			"name": "KERNEL gn87",
+			"team": "uss",
+			"creator": "Emma",
+			"create_time": "2016-01-10T18:25:43.511Z",
+			"modifier": "Emma",
+			"update_time": "2016-01-13T18:25:43.511Z",
+			"desc": "Kernel automations for continuous regression",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zAlt0003",
+			"name": "KERNEL STACKS ABOVE i3",
+			"team": "uss",
+			"creator": "Scheru",
+			"create_time": "2016-01-10T18:25:43.511Z",
+			"modifier": "Scheru",
+			"update_time": "2016-01-13T18:25:43.511Z",
+			"desc": "KERNEL BUCKETS RUNNING WITH KERNELSTACKS(ABOVE)",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zAlt0004",
+			"name": "FILESYSTEM ZFS SYSPLEX 4t",
+			"team": "uss",
+			"creator": "Webber",
+			"create_time": "2016-03-11T18:25:43.511Z",
+			"modifier": "Webber",
+			"update_time": "2016-03-20T18:25:43.511Z",
+			"desc": "In Continuous Regression, ZFS SYSPLEX filesystem.",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zAlt0005",
+			"name": "FILESYSTEM ZFS NONSYSPLEX mo98",
+			"team": "uss",
+			"creator": "Longman",
+			"create_time": "2016-03-11T18:25:43.511Z",
+			"modifier": "Longman",
+			"update_time": "2016-03-20T18:25:43.511Z",
+			"desc": "Single system Filesystem ZFS root",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zAlt0006",
+			"name": "LE gxt",
+			"team": "uss",
+			"creator": "Danel",
+			"create_time": "2016-04-01T18:25:43.511Z",
+			"modifier": "Danel",
+			"update_time": "2016-04-05T18:25:43.511Z",
+			"desc": "LE Regression tests in Continuous Regression",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec1",
+				  "name": "workload_test01"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zAlt0007",
+			"name": "FILESYSTEM HFS SYSPLEX SP",
+			"team": "uss",
+			"creator": "Cook",
+			"create_time": "2016-04-01T18:25:43.511Z",
+			"modifier": "Cook",
+			"update_time": "2016-04-05T18:25:43.511Z",
+			"desc": "In Cont. Regression, HFS SYSPLEX filesystem",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zAlt0008",
+			"name": "DRIVER CHECKOUT UT",
+			"team": "uss",
+			"creator": "Doom",
+			"create_time": "2016-02-01T18:25:43.511Z",
+			"modifier": "Doom",
+			"update_time": "2016-02-05T18:25:43.511Z",
+			"desc": "driver checkout automations",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "mire0002",
+			"name": "mire-Gp2",
+			"team": "uss",
+			"creator": "mikey",
+			"create_time": "2016-02-23T18:25:43.511Z",
+			"modifier": "mikey",
+			"update_time": "2016-02-23T18:25:43.511Z",
+			"desc": "This is the 2nd group of Mike",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zAut0001",
+			"name": "TESTu91",
+			"team": "uss",
+			"creator": "Jaked",
+			"create_time": "2016-01-10T18:25:43.511Z",
+			"modifier": "Jaked",
+			"update_time": "2016-01-13T18:25:43.511Z",
+			"desc": "Just a test category",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		},
+		{
+			"id": "zAut0002",
+			"name": "KERNEL bin",
+			"team": "uss",
+			"creator": "Emmali",
+			"create_time": "2016-01-10T18:25:43.511Z",
+			"modifier": "Emmali",
+			"update_time": "2016-01-13T18:25:43.511Z",
+			"desc": "Kernel automations for continuous regression",
+			"workloads": [
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				},
+				{
+				  "id": "573b0bba9f72ddeac1002ec5",
+				  "name": "workload_test05"
+				}
+			]
+		}
+	]
+}

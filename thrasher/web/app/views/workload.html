@@ -1,0 +1,1129 @@
+<h3>Workload
+   <small>Here shows the workload(s) information for your testing.</small>
+</h3>
+<div class="wrapper workload relative-pos" ng-controller="WorkloadController as workload">
+	<!--@ workload group wall-->
+	<div class="row workload-wall">
+		<!--@ left: main list-->
+		<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 wall-col relative-pos">
+			<!--one row-->
+			<div class="row buttons level-1 animate-fadeUp" ng-show="isLevel1Shown">
+				<div class="col-lg-6 col-md-6 col-sm-6 clearfix">
+					<div class="list-set pull-left">
+						<div uib-dropdown="dropdown" class="btn-group">
+							<button type="button" class="btn btn-labeled btn-default" ng-click="workload.moveSet(currentSet, 'prev')">
+			               		<span class="btn-label"><i class="fa fa-arrow-left"></i></span>Prev
+			               	</button>
+			               	<button type="button" ng-disabled="disabled" uib-dropdown-toggle="" class="btn dropdown-toggle btn-default">{{currentSet}}
+			                  	<span class="caret"></span>
+			               	</button>
+			               	<ul role="menu" class="dropdown-menu">
+			                  	<li ng-repeat="set in pageSets"><a ng-click="workload.moveSet(item, 'this')">{{set}}</a></li>
+			               	</ul>
+			               	<button type="button" class="btn btn-labeled btn-default"  ng-click="workload.moveSet(currentSet, 'next')">Next
+			               		<span class="btn-label btn-label-right"><i class="fa fa-arrow-right"></i></span>
+			            	</button>
+			            </div>
+					</div>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 clearfix">
+					<uib-pagination total-items="workload.pagTotalNum" ng-model="workload.pagCurrentPage" max-size="workload.pagMaxSize"
+						num-pages="workload.pagNumPages" ng-change="workload.pagGroupChanged(workload.pagCurrentPage)"
+						boundary-links="true" rotate="false" class="pagination-sm uib-pagination pull-right"></uib-pagination>
+				</div>
+			</div>
+			
+			<!--one row-->
+			<div class="row title text-center level-1 animate-fadeUp" ng-show="isLevel1Shown">
+				<h4 class="title clearfix">Workload Group <em class="icon-magnifier" ng-click="isSrchforShown=true"></em></h4>
+			</div>
+			
+			<!--button-->
+			<div class="btn-group float level-1 animate-fadeUp" ng-show="isLevel1Shown">
+				<button uib-popover="Create Group" popover-trigger="mouseenter" class="btn btn-success bg-success-dark btn-pill-left btn-sm" ng-click="popShow1=true">
+					<em class="icon-docs"></em>
+				</button>
+				<button uib-popover="Create Workload" popover-trigger="mouseenter" class="btn btn-success bg-success btn-pill-right btn-sm" ng-click="popShow2=true">
+					<em class="icon-doc"></em>
+				</button>
+			</div>
+			
+			<!--search for panel-->
+			<div class="panel panel-default search-for init-hide" ng-class="{'shown':isSrchforShown}">
+				<div class="panel-heading relative-pos">
+					<h5 class="title text-decorate">Group Search For</h5>
+					<em class="fa fa-times pull-right click-close" ng-click="isSrchforShown=false"></em>
+				</div>
+				<div class="panel-body">
+					<div class="form">
+						<div class="form-group m0">
+                  			<label>Name</label>
+                  			<p>
+                  				<a href="#" editable-text="workload.groupSrchfor.name">{{ workload.groupSrchfor.name }}</a>
+                  			</p>
+               			</div>
+               			<div>
+                  			<label>Team</label>
+                  			<p class="form-control-static">
+                  				<a href="#" editable-text="workload.groupSrchfor.team">{{ workload.groupSrchfor.team }}</a>
+                  			</p>
+               			</div>
+               			<div>
+                  			<label>Workload</label>
+                  			<p class="form-control-static">
+                  				<a href="#" editable-text="workload.groupSrchfor.workload">{{ workload.groupSrchfor.workload }}</a>
+                  			</p>
+               			</div>
+					</div>
+				</div>
+			</div>
+			
+			<!--one row-->
+			<div class="row group-list level-1">
+				<div class="hex-container">
+					<div class="hex relative-pos {{thisgroup.bgColorClass}} animate-rotate" ng-repeat="thisgroup in workload.groupSet"
+					 ng-class="{'hex-gap': workload.isHexGap($index)}" ng-show="isLevel1Shown">
+						<div class="inner">
+							<p>{{thisgroup.team}}</p>
+							<hr />
+							<h5 class="text-decorate group-name">{{thisgroup.name}}</h5>
+						</div>
+						<a ng-click="workload.groupCheckIn(thisgroup.id, thisgroup.name)"></a>
+						<div class="corner-1"></div>
+						<div class="corner-2"></div>
+						<div class="btn-group float">
+							<button uib-popover="CheckIn" popover-trigger="mouseenter" class="btn btn-primary btn-pill-left" 
+							 ng-click="workload.groupCheckIn(thisgroup.id, thisgroup.name)">
+								<em class="fa fa-puzzle-piece"></em>
+							</button>
+							<button uib-popover="View/Edit" popover-trigger="mouseenter" class="btn btn-info btn-pill-right"
+							 ng-click="workload.groupSlideShow(thisgroup.id, thisgroup.name)">
+								<em class="fa fa-pencil"></em>
+							</button>
+						</div>
+						<button class="btn btn-default btn-xs float">
+							<strong class="text-decorate">{{thisgroup.workloadCount}}</strong> workload(s)
+						</button>
+					</div>
+				</div>	
+			</div>
+			
+			<!--===============================================================================================================-->
+			
+			<!--==@ Level 2: workload list (in a group)==-->
+			<div class="wrapper level-2" ng-class="{'active': isLevel2Shown}">
+				<div class="row title level-2 text-center animate-fadeUp clearfix relative-pos" ng-show="isLevel2Shown">
+					<h4>Workload <em class="icon-magnifier" ng-click="isSrchforWorkloadShown=true"></em></h4>
+					<button class="btn btn-primary btn-pill-left btn-sm pull-right" ng-click="workload.backToGroup()"><em class="fa fa-arrow-left"></em> Back</button>
+				</div>
+				
+				<div class="row workload-list level-2 row-masonry row-masonry-xl-3 row-masonry-lg-3 row-masonry-md-3 row-masonry-sm-2">
+					<div class="col-masonry one-deck relative-pos animate-rotate {{thisworkload.bgColorClass}}" ng-repeat="thisworkload in workload.workloadSet" ng-show="isLevel2Shown">
+	      				<div class="content-box m0">
+	         				<p class="text-center text-muted">
+	            				<strong>{{thisworkload.name}}</strong>
+	         				</p>
+	         				<!--one row-->
+	         				<div class="row display check-list">
+	         					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	         						{{thisworkload.desc}}
+	         					</div>
+	         				</div>
+	         				<p class="text-center text-muted">
+	            				<strong>{{thisworkload.team}}</strong>
+	         				</p>
+	         				<p>
+	         					<em class="label label-default pull-left text-dark" ng-repeat="thisTag in thisworkload.tag">{{thisTag}}</em>
+	         				</p>
+	      				</div>
+	      				
+	      				<!--popup for option-->
+	      				<div class="popup option animate clearfix">
+	      					<span class="one-option fa-stack pull-left">
+                    			<em class="fa fa-circle fa-stack-2x text-success"></em>
+                    			<em class="fa fa-play fa-stack-1x fa-inverse text-white" ng-click="workload.runWorkload(thisworkload)"></em>
+                 			</span>
+                 			<span class="one-option fa-stack pull-left" ng-click="workload.checkWorkloadProfile(thisworkload, $index)">
+                    			<em class="fa fa-circle fa-stack-2x text-warning"></em>
+                    			<em class="fa fa-edit fa-stack-1x fa-inverse text-white"></em>
+                 			</span>
+                 			<span class="one-option fa-stack pull-left" ng-click="workload.removeWorkload(thisworkload, $index)">
+                    			<em class="fa fa-circle fa-stack-2x text-danger"></em>
+                    			<em class="fa fa-remove fa-stack-1x fa-inverse text-white"></em>
+                 			</span>
+	      				</div>
+	   				</div>
+				</div>
+			</div>
+			<!--==& Level 2: workload list (in a group)==-->
+			
+			<!--==@ Level 3: workload profile==-->
+			<div class="wrapper level-3 workload-profile animate-zoom" ng-class="{'active': isLevel3ProfileShown}" ng-show="isLevel3ProfileShown">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="panel panel-default">
+							<button class="pull-right btn btn-primary btn-pill-left btn-sm click-close"
+							 ng-click="workloadForm.$cancel(); workload.workloadEditCancel(); workload.backFromWorkloadProfile()">
+								<em class="fa fa-arrow-left"></em> Back
+							</button>
+							<div class="panel-title text-center">
+								<!--option-->
+								<span class="float option">
+									<form editable-form="" name="workloadForm" onaftersave="workload.workloadEditSave()"
+							        	ng-show="workloadForm.$visible" class="form-buttons form-inline" style="display: inline-block">
+							        	<button type="submit" ng-disabled="workloadForm.$waiting" title="Save" class="btn btn-xs btn-success">
+					                  		<em class="fa fa-save"></em>
+					               		</button>
+					               		<button type="button" ng-disabled="workloadForm.$waiting"
+					               		 ng-click="workloadForm.$cancel(); workload.workloadEditCancel()" title="Cancel" class="btn btn-xs btn-danger">
+					                  		<em class="fa fa-times"></em>
+					               		</button>
+							        </form>
+							        <span ng-show="!workloadForm.$visible" class="buttons">
+							        	<button ng-click="workloadForm.$show()" title="Edit" class="btn btn-xs btn-warning">
+							            	<em class="fa fa-pencil"></em>
+							            </button>
+							        </span>
+							    </span>
+								<span class="text-primary text-bold">Workload Profile</span>
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 left-col profile">
+										<div class="row text-center">
+											<span class="text-muted text-bold">Basic Information</span>
+										</div>
+										<br />
+										<scrollable height="200" class="list-group basic">
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label>name</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<span editable-text="workloadProfile.name" e-name="name" e-form="workloadForm">
+														{{workloadProfile.name}}
+													</span>
+												</div>
+											</div>
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label>creator</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<span>{{workloadProfile.creator}}</span>
+												</div>
+											</div>
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label>modifier</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<span>{{workloadProfile.modifier}}</span>
+												</div>
+											</div>
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label><em class="fa fa-clock-o"></em> created</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<span>{{workloadProfile.create_time | date: 'yyyy-MM-dd HH:mm:ss Z'}}</span>
+												</div>
+											</div>
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label><em class="fa fa-clock-o"></em> updated</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<span>{{workloadProfile.update_time | date: 'yyyy-MM-dd HH:mm:ss Z'}}</span>
+												</div>
+											</div>
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label>team</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<span editable-text="workloadProfile.team" e-name="team" e-form="workloadForm">
+														{{workloadProfile.team}}
+													</span>
+												</div>
+											</div>
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label>run as user</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<span editable-text="workloadProfile.runuser" e-name="runuser" e-form="workloadForm">
+														{{workloadProfile.runuser}}
+													</span>
+												</div>
+											</div>
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label>description</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<span editable-text="workloadProfile.desc" e-name="desc" e-form="workloadForm">
+														{{workloadProfile.desc}}
+													</span>
+												</div>
+											</div>
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label>tag</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<em class="label label-primary one-tag pull-left" ng-repeat="thisTag in workloadProfile.tags">
+					             						<span editable-text="thisTag" e-name="tag" e-form="workloadForm">{{thisTag}}</span>
+					             						<em class="icon-close" ng-click="workload.workloadEditItemRemove($index, thisTag, 'tag')" ng-show="workloadForm.$visible"></em>
+					             					</em>
+					             					<em class="icon-plus" ng-click="workload.workloadEditItemAdd('<new>', 'tag')" ng-show="workloadForm.$visible"></em>
+												</div>
+											</div>
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label>Setup Script</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<span editable-textarea="workloadProfile.setup_script" e-rows="2" e-cols="30" e-name="sscript" e-form="workloadForm">
+														{{workloadProfile.setup_script}}
+													</span>
+												</div>
+											</div>
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label>Clean Script</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<span editable-textarea="workloadProfile.clean_script" e-rows="2" e-cols="30" e-name="cscript" e-form="workloadForm">
+														{{workloadProfile.clean_script}}
+													</span>
+												</div>
+											</div>
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label>Exe Script</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<span editable-textarea="workloadProfile.exe_script" e-rows="2" e-cols="30" e-name="xscript" e-form="workloadForm">
+														{{workloadProfile.exe_script}}
+													</span>
+												</div>
+											</div>
+											<!--one item-->
+											<div class="row list-group-item">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label>Env Script</label>
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<span editable-textarea="workloadProfile.env_script" e-rows="2" e-cols="30" e-name="escript" e-form="workloadForm">
+														{{workloadProfile.env_script}}
+													</span>
+												</div>
+											</div>
+										</scrollable>
+										
+										<br />
+										<!--group-->
+										<div class="row text-center">
+											<!--option-->
+											<div class="float option">
+												<button title="Add" class="btn btn-xs btn-warning" ng-click="editShow3=true" ng-show="workloadForm.$visible">
+									            	<em class="fa fa-plus"></em>
+									        	</button>
+									        	<span class="text-muted text-bold">Group</span>
+											</div>
+										</div>
+										<br />
+										<scrollable height="200" class="list-group group">
+											<!--float operation panel-->
+											<div class="panel panel-default float operation animate-zoom" ng-show="editShow3">
+												<div class="panel-body">
+													<div class="input-group">
+														<span class="input-group-addon width-s">Group</span>
+														<select chosen="" ng-model="gSelect" ng-options="g for g in workload.glist"
+														 width="'300px'" class="chosen-select input-md">
+															<option value=""></option>
+														</select>
+													</div>
+												</div>
+												<div class="panel-footer text-center">
+													<div class="btn-group">
+														<span class="btn btn-success click-go select btn-xs btn-pill-left" ng-click="workload.workloadEditItemAdd(gSelect, 'group')">
+															<em class="fa fa-check"></em> Add
+														</span>
+														<span class="btn btn-default btn-xs btn-pill-right" ng-click="editShow3=false">
+															Back <em class="fa fa-times"></em>
+														</span>
+													</div>
+												</div>
+											</div>
+											
+											<div class="row list-group-item" ng-repeat="oneGroup in workloadProfile.groups">
+												<span class="pull-left">{{oneGroup}}</span>
+												<span class="pull-right fa fa-group fa-lg"></span>
+												<em class="pull-right fa fa-minus-circle text-danger click-remove" ng-show="workloadForm.$visible"
+												 ng-click="workload.workloadEditItemRemove($index, oneGroup, 'group')"></em>
+											</div>
+										</scrollable>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 right-col profile">
+										<!--testsuite-->
+										<div class="row text-center">
+											<!--option-->
+											<div class="float option">
+												<button title="Add" class="btn btn-xs btn-warning" ng-click="editShow1=true" ng-show="workloadForm.$visible">
+									            	<em class="fa fa-plus"></em>
+									            </button>
+									            <span class="text-muted text-bold">Testsuite List</span>
+											</div>
+										</div>
+										<br />
+										<scrollable height="200" class="list-group testsuite">
+											<!--float operation panel-->
+											<div class="panel panel-default float operation animate-zoom" ng-show="editShow1">
+												<div class="panel-body">
+													<div class="input-group">
+														<span class="input-group-addon width-s">Testsuite</span>
+														<select chosen="" ng-model="addSuite" ng-options="ts as ts.name for ts in workload.tslist"
+														 width="'300px'" class="chosen-select">
+															<option value=""></option>
+														</select>
+													</div>
+													<br />
+													<div class="input-group">
+														<span class="input-group-addon width-s">Weight</span>
+														<input type="number" ng-model="addSuite.weight" class="form-control width-s" />
+													</div>
+												</div>
+												<div class="panel-footer text-center">
+													<div class="btn-group">
+														<span class="btn btn-success click-go select btn-xs btn-pill-left" ng-click="workload.workloadEditItemAdd(addSuite, 'testsuite')">
+															<em class="fa fa-check"></em> Add
+														</span>
+														<span class="btn btn-default btn-xs btn-pill-right" ng-click="editShow1=false">
+															Back <em class="fa fa-times"></em>
+														</span>
+													</div>
+												</div>
+											</div>
+											
+											<div class="row list-group-item" ng-repeat="oneSuite in workloadProfile.testsuites">
+												<span class="pull-left">{{oneSuite.name}}</span>
+												<span class="pull-right label label-default">
+													<a href="#" editable-text="oneSuite.weight" e-cols="5">{{oneSuite.weight}}</a>
+												</span>
+												<em class="pull-right fa fa-minus-circle text-danger click-remove" ng-show="workloadForm.$visible"
+												 ng-click="workload.workloadEditItemRemove($index, oneSuite, 'testsuite')"></em>
+											</div>
+										</scrollable>
+										
+										<br />
+										<!--machine-->
+										<div class="row text-center">
+											<!--option-->
+											<div class="float option">
+												<button title="Add" class="btn btn-xs btn-warning" ng-click="editShow2=true" ng-show="workloadForm.$visible">
+									            	<em class="fa fa-plus"></em>
+									        	</button>
+									        	<span class="text-muted text-bold">Machine List</span>
+											</div>
+										</div>
+										<br />
+										<scrollable height="200" class="list-group machines">
+											<!--float operation panel-->
+											<div class="panel panel-default float operation animate-zoom" ng-show="editShow2">
+												<div class="panel-body">
+													<div class="input-group">
+														<span class="input-group-addon width-s">Machine</span>
+														<select chosen="" ng-model="mchSelect" ng-options="ts for ts in workload.mchlist"
+														 width="'300px'" class="chosen-select input-md">
+															<option value=""></option>
+														</select>
+													</div>
+												</div>
+												<div class="panel-footer text-center">
+													<div class="btn-group">
+														<span class="btn btn-success click-go select btn-xs btn-pill-left" ng-click="workload.workloadEditItemAdd(mchSelect, 'machine')">
+															<em class="fa fa-check"></em> Add
+														</span>
+														<span class="btn btn-default btn-xs btn-pill-right" ng-click="editShow2=false">
+															Back <em class="fa fa-times"></em>
+														</span>
+													</div>
+												</div>
+											</div>
+											
+											<div class="row list-group-item" ng-repeat="thisMachine in workloadProfile.machines">
+												<span class="pull-left">{{thisMachine}}</span>
+												<span class="pull-right icon-screen-desktop fa-lg"></span>
+												<em class="pull-right fa fa-minus-circle text-danger click-remove" ng-show="workloadForm.$visible"
+												 ng-click="workload.workloadEditItemRemove($index, thisMachine, 'machine')"></em>
+											</div>
+										</scrollable>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--==& Level 3: workload profile==-->
+			
+			<!--==@ Level 3: run workload==-->
+			<div class="wrapper level-3 workload-run animate-fadeUp" ng-class="{'active': isLevel3RunShown}" ng-show="isLevel3RunShown"
+			 ng-controller="WorkloadCoder as coder">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<div class="code-editor fh">
+							<select class="form-control selection code-template">
+								<option value="default" ng-click="coder.loadTemplate()">default</option>
+								<option value="1">other</option>
+							</select>
+							<div role="toolbar" class="code-toolbar btn-toolbar">
+								<div class="btn-group pull-left">
+           							<button class="btn btn-green btn-pill-right btn-sm" ng-click="coder.submitCode()">
+           								Submit <em class="fa fa-send"></em>
+           							</button>
+        						</div>
+        						<div class="btn-group pull-right">
+        							<button class="btn btn-primary btn-pill-left btn-sm" ng-click="workload.backFromWorkloadRun()">
+        								<em class="fa fa-arrow-left"></em> Back
+        							</button>
+        						</div>
+							</div>
+							<ui-codemirror ui-codemirror-opts="coder.editorOpts" ng-model="coder.code" ui-refresh="coder.refreshEditor"></ui-codemirror>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--==& Level 3: run workload==-->
+		</div>
+		<!--& left: main list-->
+		
+		<!--@ right: aside info-->
+		<aside class="col-xs-0 col-sm-0 col-md-3 col-lg-3 right-col">
+			<!--Monthly Update-->
+			<div class="panel panel-default stats" ng-class="{'panel-shown':rightShow}">
+				<div class="panel-body">
+					<a href="#" class="text-muted pull-right">
+						<em class="fa fa-arrow-right"></em>
+					</a>
+					<div class="text-info">Monthly Updates</div>
+					<canvas classyloader="" class="center-block" width="200" height="200"
+						data-percentage="68"
+						data-speed="20"
+						data-font-size="40px"
+					 	data-diameter="70"
+					 	data-line-color="{{colorByName('info')}}"
+					 	data-remaining-line-color="rgba(200,200,200,0.4)"
+					 	data-line-width="10"
+           			 	data-rounded-line="true">
+           			</canvas>
+           			<div sparkline="" class="text-center"
+           				data-bar-color="{{colorByName('info')}}" 
+           				data-height="30" data-bar-width="5" data-bar-spacing="2" 
+           				values="5,4,8,7,8,5,4,6,5,5,9,4,6,3,4,7,5,4,7">
+           			</div>
+				</div>
+				<div class="panel-footer">
+					<p class="text-muted">
+						<em class="fa fa-upload fa-fw"></em>
+               			<span>This Month</span>
+               			<span class="text-dark animate" ng-show="rightShow">7 updates</span>
+					</p>
+				</div>
+			</div>
+			<!--Latest Update-->
+			<div class="panel panel-default stats" ng-class="{'panel-shown':rightShow}">
+				<div class="panel-heading">
+					<div class="panel-title">Latest Updates</div>
+				</div>
+				<div class="list-group">
+					<!--one group item-->
+					<div class="list-group-item">
+						<div class="media-box">
+							<!--ICON-->
+							<div class="pull-left">
+								<span class="fa-stack">
+                        			<em class="fa fa-circle fa-stack-2x text-success"></em>
+                        			<em class="fa fa-check fa-stack-1x fa-inverse text-white"></em>
+                     			</span>
+							</div>
+							<!--CONTENT-->
+							<div class="media-box-body clearfix">
+								<small class="text-muted pull-right ml">5 day</small>
+								<div class="media-box-heading">
+									<a href="#" class="text-success m0">NEW ADD/GROUP: IST</a>
+                     			</div>
+                     			<p class="m0">
+		                        	<small><a href="#">by fuxxbj</a></small>
+		                     	</p>
+							</div>
+						</div>
+					</div>
+					<!--one group item-->
+					<div class="list-group-item">
+						<div class="media-box">
+							<!--ICON-->
+							<div class="pull-left">
+								<span class="fa-stack">
+                        			<em class="fa fa-circle fa-stack-2x text-success"></em>
+                        			<em class="fa fa-check fa-stack-1x fa-inverse text-white"></em>
+                     			</span>
+							</div>
+							<!--CONTENT-->
+							<div class="media-box-body clearfix">
+								<small class="text-muted pull-right ml">6 days</small>
+								<div class="media-box-heading">
+									<a href="#" class="text-success m0">NEW ADD/WORKLOAD: JAVA COBOL</a>
+                     			</div>
+                     			<p class="m0">
+		                        	<small><a href="#">by fuxxbj</a></small>
+		                     	</p>
+							</div>
+						</div>
+					</div>
+					<!--one group item-->
+					<div class="list-group-item">
+						<div class="media-box">
+							<!--ICON-->
+							<div class="pull-left">
+								<span class="fa-stack">
+                        			<em class="fa fa-circle fa-stack-2x text-warning"></em>
+                        			<em class="fa fa-edit fa-stack-1x fa-inverse text-white"></em>
+                     			</span>
+							</div>
+							<!--CONTENT-->
+							<div class="media-box-body clearfix">
+								<small class="text-muted pull-right ml">1 weeks</small>
+								<div class="media-box-heading">
+									<a href="#" class="text-warning m0">UPDATED/WORKLOAD: CLOBBER</a>
+                     			</div>
+                     			<p class="m0">
+		                        	<small><a href="#">by hyebj</a></small>
+		                     	</p>
+							</div>
+						</div>
+					</div>
+					<!--one group item-->
+					<div class="list-group-item">
+						<div class="media-box">
+							<!--ICON-->
+							<div class="pull-left">
+								<span class="fa-stack">
+                        			<em class="fa fa-circle fa-stack-2x text-danger"></em>
+                        			<em class="fa fa-exclamation fa-stack-1x fa-inverse text-white"></em>
+                     			</span>
+							</div>
+							<!--CONTENT-->
+							<div class="media-box-body clearfix">
+								<small class="text-muted pull-right ml">2 weeks</small>
+								<div class="media-box-heading">
+									<a href="#" class="text-danger m0">REMOVED/WORKLOAD: SMB</a>
+                     			</div>
+                     			<p class="m0">
+		                        	<small><a href="#">by fuxxbj</a></small>
+		                     	</p>
+							</div>
+						</div>
+					</div>
+					<!--one group item-->
+				</div>
+				<div class="panel-footer clearfix">
+					<em class="fa fa-paw pull-left text-info"></em>
+					<a href="#" class="pull-right"><small>more</small></a>
+				</div>
+			</div>
+		</aside>
+		<!--& right: aside info-->
+	</div>
+	<!--& workload group wall-->
+	
+	<!--@ RIGHT sliding panel-->
+	<div id="groupSlidePanel" class="panel panel-default aside-slide" ng-class="{'group-slide-shown':isGroupSlideShown}">
+		<div ng-class="{'panel-heading-collapsed':isGroupPanelCollapsed}" class="panel-heading">
+			{{thisGroup.name}}
+			<paneltool tool-refresh="standard" tool-collapse="tool-collapse" tool-dismiss="tool-dismiss"></paneltool>
+		</div>
+		<div uib-collapse="groupSlidePanel" class="panel-wrapper">
+			<div class="panel-body">
+				<uib-tabset type="pills">
+					<uib-tab heading="Description" class="one-tab">
+						<!--one row-->
+						<div class="row hidden">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label>id</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+                 				<span>{{thisGroup.id}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label>name</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+                 				<span editable-text="thisGroup.name" e-name="name" e-form="slideForm">{{thisGroup.name}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label>creator</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+                 				<span>{{thisGroup.creator}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label>modifier</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+                 				<span>{{thisGroup.modifier}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label class="text-right"><em class="fa fa-clock-o"></em> created</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+                 				<span>{{thisGroup.create_time | date: 'yyyy-MM-dd HH:mm:ss Z'}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label class="text-right"><em class="fa fa-clock-o"></em> updated</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+                 				<span>{{thisGroup.update_time | date: 'yyyy-MM-dd HH:mm:ss Z'}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label class="editable-controls">team</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+								<span editable-text="thisGroup.team" e-name="team" e-form="slideForm">{{thisGroup.team}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label class="editable-controls">workload#</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+								<span>{{thisGroup.workload_cnt}}</span>
+              				</div>
+						</div>
+						<!--one row-->
+						<div class="row">
+							<div class="col-xs-4 col-sm-4 col-md-4 control-label">
+								<p class="text-right"><label class="editable-controls">description</label></p>
+							</div>
+							<div class="col-xs-8 col-sm-8 col-md-8">
+								<span editable-textarea="thisGroup.desc" e-rows="2" e-cols="25" e-name="desc" e-form="slideForm">{{thisGroup.desc}}</span>
+              				</div>
+						</div>
+					</uib-tab>
+					<uib-tab heading="Workload" class="one-tab">
+						<div class="row">
+							<!--one masonry-->
+							<div class="col-xs-12 col-sm-12 col-md-12">
+								<div class="box-placeholder m0">
+									<p class="text-center">
+										<strong>Workloads in the Group</strong>
+									</p>
+									<scrollable height="300" class="list-group scrollable">
+										<div class="media-box list-group-item" ng-repeat="theWorkload in thisGroup.workloads track by $index">
+											<span class="pull-left">{{ theWorkload.name }}</span>
+											<em class="text-danger fa fa-minus-circle pull-right" ng-show="slideForm.$visible"
+											 ng-click="workload.groupEditWorkloadRomove($index, theWorkload)"></em>
+										</div>
+									</scrollable>
+								</div>
+							</div>
+						</div>
+					</uib-tab>
+				</uib-tabset>
+			</div>
+			<div class="panel-footer">
+				<!--xeditable form-->
+				<form editable-form="" name="slideForm" onaftersave="workload.groupEditSave(thisGroup)"
+		        	ng-show="slideForm.$visible" class="form-buttons form-inline">
+		        	<button type="submit" ng-disabled="slideForm.$waiting" title="Save" class="btn btn-sm btn-warning">
+                  		<em class="fa fa-save"></em>
+               		</button>
+               		<button type="button" ng-disabled="slideForm.$waiting" ng-click="slideForm.$cancel()" title="Cancel" class="btn btn-sm btn-default">
+                  		<em class="fa fa-times"></em>
+               		</button>
+		        </form>
+		        <div ng-show="!slideForm.$visible" class="buttons">
+		        	<button ng-click="slideForm.$show()" title="Edit" class="btn btn-sm btn-default">
+		            	<em class="fa fa-pencil"></em>
+		            </button>
+		        </div>
+			</div>
+		</div>
+	</div>
+	<!--& RIGHT sliding panel-->
+	
+	<!--@ pop up for adding workload group-->
+	<div class="row popup workload init-hide" ng-cloak ng-show="popShow1">
+		<div class="col-xs-0 col-sm-2 col-md-2 col-lg-2 place-hold"></div>
+		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 panel-col">
+			<div class="panel panel-default relative-pos">
+				<div class="panel-heading">
+					<h4>Create Workload Group</h4>
+					<!--go back-->
+					<span class="btn btn-labeled btn-default click-cancel" ng-click="workload.groupAddCancel(newgroup_form)">
+						<i class="fa fa-times"></i>
+					</span>
+				</div>
+				<div class="panel-body row">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<form name="newgroup_form" novalidate ng-submit="workload.groupAddConfirm(newgroup_form)">
+							<div class="form-group">
+								<label>name</label>
+								<input class="form-control" name="name" type="text" placeholder="Group name" ng-model="workload.groupadd.name"
+									ng-minlength=3 ng-maxlength=20 required />
+								<div class="error" ng-show="newgroup_form.name.$dirty && newgroup_form.name.$invalid">
+									<small class="error text0" ng-show="newgroup_form.name.$error.required">This is required.</small>
+									<small class="error text0" ng-show="newgroup_form.name.$error.minlength">This is required to be at least 3 characters.</small>
+									<small class="error text0" ng-show="newgroup_form.name.$error.maxlength">This cannot be longer than 20 characters.</small>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>team</label>
+								<input class="form-control" name="team" type="text" placeholder="Your team" ng-model="workload.groupadd.team"
+									ng-minlength=3 ng-maxlength=20 required />
+								<div class="error" ng-show="newgroup_form.team.$dirty && newgroup_form.team.$invalid">
+									<small class="error text0" ng-show="newgroup_form.team.$error.required">This is required.</small>
+									<small class="error text0" ng-show="newgroup_form.team.$error.minlength">This is required to be at least 3 characters.</small>
+									<small class="error text0" ng-show="newgroup_form.team.$error.maxlength">This cannot be longer than 20 characters.</small>
+								</div>
+							</div>
+							<div class="form-group">
+								<label>description</label>
+								<textarea class="form-control" name="desc" rows="3" ng-model="workload.groupadd.desc"
+									ng-minlength=3 required>
+								</textarea>
+								<div class="error" ng-show="newgroup_form.desc.$dirty && newgroup_form.desc.$invalid">
+									<small class="error text0" ng-show="newgroup_form.desc.$error.required">This is required.</small>
+									<small class="error text0" ng-show="newgroup_form.desc.$error.minlength">This is required to be at least 3 characters.</small>
+								</div>
+							</div>
+							<div class="form-group">
+								<button type="submit" ng-disabled="newgroup_form.$invalid" class="btn btn-primary">Confirm</button>
+							</div>
+						</form>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 clearfix relative-pos">
+								<div class="input-group" style="margin-bottom: 10px">
+									<span class="input-group-addon">Workload</span>
+									<select chosen="" ng-model="wSelect" ng-options="s for s in workload.wlist"
+									 width="'300px'" class="chosen-select input-md">
+										<option value=""></option>
+									</select>
+								</div>
+								<span class="btn btn-success click-go workload select float" ng-click="workload.groupWorkloadAdd(wSelect)">
+									<em class="fa fa-check"></em>
+								</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<scrollable height="420" class="list-group scrollable">
+									<div class="media-box list-group-item" ng-repeat="theOne in workload.groupadd.workloads track by $index">
+										<span class="pull-left">{{ theOne }}</span>
+										<em class="text-danger fa fa-minus-circle pull-right" ng-click="workload.groupWorkloadRomove($index, theOne)"></em>
+									</div>
+								</scrollable>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--& pop up for adding workload group-->
+	
+	<!--@ pop up for adding workload-->
+	<div class="row popup workload init-hide" ng-cloak ng-show="popShow2">
+		<div class="col-xs-0 col-sm-2 col-md-2 col-lg-2 place-hold"></div>
+		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 panel-col">
+			<div class="panel panel-default relative-pos">
+				<div class="panel-heading">
+					<h4>Create Workload</h4>
+				</div>
+				<div class="panel-body">
+					<!--@ workload form wizard-->
+					<form name="workload_form" form-wizard="" steps="5" novalidate ng-submit="workload.workloadAddConfirm(workload_form)">
+						<div class="form-wizard wizard-vertical">
+							<!--go back-->
+							<span class="btn btn-labeled btn-default click-cancel" ng-click="workload.workloadAddCancel(workload_form); wizard.go(1)">
+								<i class="fa fa-times"></i>
+							</span>
+							
+							<!-- GUIDE -->
+							<ol>
+								<li ng-class="{'active':wizard.active(1)}" ng-click="wizard.go(1)"><h4 class="mb0">Basic</h4></li>
+								<li ng-class="{'active':wizard.active(2)}" ng-click="wizard.go(2)"><h4 class="mb0">Script</h4></li>
+								<li ng-class="{'active':wizard.active(3)}" ng-click="wizard.go(3)"><h4 class="mb0">Tag &amp; Group</h4></li>
+								<li ng-class="{'active':wizard.active(4)}" ng-click="wizard.go(4)"><h4 class="mb0">Testsuite &amp; Machine</h4></li>
+								<li ng-class="{'active':wizard.active(5)}" ng-click="wizard.go(5)"><h4 class="mb0">Done!</h4></li>
+							</ol>
+							
+							<!-- ONE Step -->
+							<div ng-show="wizard.active(1)">
+								<fieldset>
+									<div class="form-group">
+										<label>name <em class="text-danger">*</em></label>
+										<input class="form-control" name="name" type="text" placeholder="Wokload name" ng-model="workload.wkldadd.name"
+											ng-minlength=3 ng-maxlength=20 required />
+										<div class="error" ng-show="workload_form.name.$dirty && workload_form.name.$invalid">
+											<small class="error text0" ng-show="workload_form.name.$error.required">This is required.</small>
+											<small class="error text0" ng-show="workload_form.name.$error.minlength">This is required to be at least 3 characters.</small>
+											<small class="error text0" ng-show="workload_form.name.$error.maxlength">This cannot be longer than 20 characters.</small>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>team <em class="text-danger">*</em></label>
+										<input class="form-control" name="team" type="text" placeholder="Your team" ng-model="workload.wkldadd.team"
+											ng-minlength=3 ng-maxlength=20 required />
+										<div class="error" ng-show="workload_form.team.$dirty && workload_form.team.$invalid">
+											<small class="error text0" ng-show="workload_form.team.$error.required">This is required.</small>
+											<small class="error text0" ng-show="workload_form.team.$error.minlength">This is required to be at least 3 characters.</small>
+											<small class="error text0" ng-show="workload_form.team.$error.maxlength">This cannot be longer than 20 characters.</small>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>run as user <em class="text-danger">*</em></label>
+										<input class="form-control" name="runuser" type="text" placeholder="Run as user" ng-model="workload.wkldadd.runuser"
+											ng-minlength=3 ng-maxlength=8 required />
+										<div class="error" ng-show="workload_form.runuser.$dirty && workload_form.runuser.$invalid">
+											<small class="error text0" ng-show="workload_form.runuser.$error.required">This is required.</small>
+											<small class="error text0" ng-show="workload_form.runuser.$error.minlength">This is required to be at least 3 characters.</small>
+											<small class="error text0" ng-show="workload_form.runuser.$error.maxlength">This cannot be longer than 8 characters.</small>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>description <em class="text-danger">*</em></label>
+										<textarea class="form-control" name="desc" rows="3" ng-model="workload.wkldadd.desc"
+											ng-minlength=2 required>
+										</textarea>
+										<div class="error" ng-show="workload_form.desc.$dirty && workload_form.desc.$invalid">
+											<small class="error text0" ng-show="workload_form.desc.$error.required">This is required.</small>
+											<small class="error text0" ng-show="workload_form.desc.$error.minlength">This is required to be at least 3 characters.</small>
+										</div>
+									</div>
+								</fieldset>
+								<ul class="pager">
+									<li class="next"><a ng-click="wizard.go(2)">Next <span>&rarr;</span></a></li>
+								</ul>
+							</div>
+							
+							<!-- ONE Step -->
+							<div ng-show="wizard.active(2)">
+								<fieldset>
+									<div class="form-group">
+										<label>Setup Script</label>
+										<div class="controls">
+											<textarea ng-model="workload.wkldadd.sscript" class="form-control" rows="2"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Clean Script</label>
+										<div class="controls">
+											<textarea ng-model="workload.wkldadd.cscript" class="form-control" rows="2"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Execution Script <em class="text-danger">*</em></label>
+										<div class="controls">
+											<textarea name="xscript" ng-model="workload.wkldadd.xscript" class="form-control" rows="2" required></textarea>
+											<div class="error" ng-show="workload_form.xscript.$dirty && workload_form.xscript.$invalid">
+												<small class="error text0" ng-show="workload_form.escript.$error.required">This is required.</small>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<label>Environment Script</label>
+										<div class="controls">
+											<textarea name="escript" ng-model="workload.wkldadd.escript" class="form-control" rows="2" required></textarea>
+										</div>
+									</div>
+								</fieldset>
+								<ul class="pager">
+									<li class="previous"><a ng-click="wizard.go(1)"><span>&larr; Previous</span></a></li>
+									<li class="next"><a ng-click="wizard.go(3)">Next <span>&rarr;</span></a></li>
+								</ul>
+							</div>
+							
+							<!-- ONE Step -->
+							<div ng-show="wizard.active(3)">
+								<!--tag-->
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 clearfix relative-pos">
+										<div class="input-group" style="margin-bottom: 10px">
+											<span class="input-group-addon width-s">Tag</span>
+											<input type="text" ng-model="tagInput" width="300px" placeholder="input a tag name and click" class="form-control tag" />
+										</div>
+										<span class="btn btn-success click-go tag float" ng-click="workload.workloadNewItemAdd(tagInput, 'tag')">
+											<em class="fa fa-check"></em>
+										</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<scrollable height="140" class="list-group scrollable">
+											<div class="media-box list-group-item" ng-repeat="theTag in workload.wkldadd.tags track by $index">
+												<span class="pull-left label label-primary">{{ theTag }}</span>
+												<em class="text-danger fa fa-minus-circle pull-right" ng-click="workload.workloadNewItemRemove($index, theTag, 'tag')"></em>
+											</div>
+										</scrollable>
+									</div>
+								</div>
+								
+								<br />
+								
+								<!--group-->
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 clearfix relative-pos">
+										<div class="input-group" style="margin-bottom: 10px">
+											<span class="input-group-addon width-s">Group</span>
+											<select chosen="" ng-model="gSelect" ng-options="g for g in workload.glist"
+											 width="'300px'" class="chosen-select input-md">
+												<option value=""></option>
+											</select>
+										</div>
+										<span class="btn btn-success click-go workload select float" ng-click="workload.workloadNewItemAdd(gSelect, 'group')">
+											<em class="fa fa-check"></em>
+										</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<scrollable height="140" class="list-group scrollable">
+											<div class="media-box list-group-item" ng-repeat="theGroup in workload.wkldadd.groups track by $index">
+												<span class="pull-left">{{ theGroup }}</span>
+												<em class="text-danger fa fa-minus-circle pull-right" ng-click="workload.workloadNewItemRemove($index, theGroup, 'group')"></em>
+											</div>
+										</scrollable>
+									</div>
+								</div>
+								
+								<ul class="pager">
+									<li class="previous"><a ng-click="wizard.go(2)"><span>&larr; Previous</span></a></li>
+									<li class="next"><a ng-click="wizard.go(4)">Next <span>&rarr;</span></a></li>
+								</ul>
+							</div>
+							
+							<!-- ONE Step -->
+							<div ng-show="wizard.active(4)">
+								<!--testsuite-->
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 clearfix relative-pos">
+										<div class="input-group" style="margin-bottom: 10px">
+											<span class="input-group-addon width-s">Testsuite</span>
+											<select chosen="" ng-model="tsSelect" ng-options="ts as ts.name for ts in workload.tslist"
+											 width="'300px'" class="chosen-select input-md">
+												<option value=""></option>
+											</select>
+										</div>
+										<span class="btn btn-success click-go workload select float" ng-click="workload.workloadNewItemAdd(tsSelect, 'testsuite')">
+											<em class="fa fa-check"></em>
+										</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<scrollable height="140" class="list-group scrollable">
+											<div class="media-box list-group-item" ng-repeat="theSuite in workload.wkldadd.testsuites track by $index">
+												<span class="pull-left">{{ theSuite.name }}</span>
+												<em class="text-danger fa fa-minus-circle pull-right" ng-click="workload.workloadNewItemRemove($index, theSuite, 'testsuite')"></em>
+												<span class="pull-right label label-default width-s">
+													<input type="number" ng-model="theSuite.weight" class="form-control weight"></input>
+												</span>
+											</div>
+										</scrollable>
+									</div>
+								</div>
+								
+								<br />
+								
+								<!--machine-->
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 clearfix relative-pos">
+										<div class="input-group" style="margin-bottom: 10px">
+											<span class="input-group-addon width-s">Machine</span>
+											<select chosen="" ng-model="mchSelect" ng-options="mch for mch in workload.mchlist"
+											 width="'300px'" class="chosen-select input-md">
+												<option value=""></option>
+											</select>
+										</div>
+										<span class="btn btn-success click-go machine select float" ng-click="workload.workloadNewItemAdd(mchSelect, 'machine')">
+											<em class="fa fa-check"></em>
+										</span>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+										<scrollable height="140" class="list-group scrollable">
+											<div class="media-box list-group-item" ng-repeat="theMachine in workload.wkldadd.machines track by $index">
+												<span class="pull-left icon-screen-desktop fa-lg"></span>
+												<span class="pull-left">{{ theMachine }}</span>
+												<em class="text-danger fa fa-minus-circle pull-right" ng-click="workload.workloadNewItemRemove($index, theMachine, 'machine')"></em>
+											</div>
+										</scrollable>
+									</div>
+								</div>
+								
+								<ul class="pager">
+									<li class="previous"><a ng-click="wizard.go(3)"><span>&larr; Previous</span></a></li>
+									<li class="next"><a ng-click="wizard.go(5)">Next <span>&rarr;</span></a></li>
+								</ul>
+							</div>
+							
+							<!-- ONE Step -->
+							<div ng-show="wizard.active(5)">
+								<div class="jumbotron m0">
+									<h3 class="mt0">Done!</h3>
+									<p>Click below button to confirm creation! Or step back for modification.</p>
+									<p class="m0">
+										<button type="submit" ng-disabled="workload_form.$invalid" class="btn btn-success" ng-click="wizard.go(1);">Confirm</button>
+									</p>
+								</div>
+								<ul class="pager">
+									<li class="previous"><a ng-click="wizard.go(4)"><span>&larr; Previous</span></a></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+					<!--& workload form wizard-->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--& pop up for adding workload-->
+	
+</div>
