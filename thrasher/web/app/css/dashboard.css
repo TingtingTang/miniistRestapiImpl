@@ -34,7 +34,3 @@
 .wrapper.dashboard .dashboard_chart{
     padding: 60px !important;
 }
-.wrapper.dashboard .dash_canvas{
-    border: 1px solid #fff;
-    margin-left: 30px;
-}

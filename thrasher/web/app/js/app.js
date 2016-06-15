@@ -1032,22 +1032,21 @@
 
           // chenhao 添加折线图的测试数据源
             var chart_data = {
-                labels1 : ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'],
-                data1 : [
-                    ['01','02','06','09','12','15','20','21','23','25','25','27','30','34','35','36','37','42','49','50','61','62','73','122','125','126','127','128','129','160'], // data1
-                    //[rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor()], // data2
-                    ['0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0']
-                ],
+                //labels : ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'],
+                //data : [
+                //    ['01','02','06','09','12','15','20','21','23','25','25','27','30','34','35','36','37','42','49','50','61','62','73','122','125','126','127','128','129','160'], // data1
+                //    [rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor()], // data2
+                //]
 
-                labels2 : ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-                data2 : [
+                labels : ['01','02','03','04','05','06','07','08','09','10','11','12'],
+                data : [
                     ['01','02','06','09','12','15','20','21','23','25','25','27'], // data1
                     //[rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor(),rFactor()], // data2
                 ]
             };
 
           vm.lineData = {
-              labels : chart_data.labels1,
+              labels : chart_data.labels,
               datasets : [
                 {
                   label: 'My First dataset',
@@ -1057,17 +1056,17 @@
                   pointStrokeColor : '#fff',
                   pointHighlightFill : '#fff',
                   pointHighlightStroke : 'rgba(114,102,186,1)',
-                  data : chart_data.data1[0]
+                  data : chart_data.data[0]
                 },
                 {
                   label: 'My Second dataset',
                   fillColor : 'rgba(35,183,229,0.2)',
-                  strokeColor : 'rgba(256,256,256,1)',
-                  pointColor : 'rgba(256,256,256,1)',
+                  strokeColor : 'rgba(35,183,229,1)',
+                  pointColor : 'rgba(35,183,229,1)',
                   pointStrokeColor : '#fff',
                   pointHighlightFill : '#fff',
                   pointHighlightStroke : 'rgba(35,183,229,1)',
-                  //data : chart_data.data1[1]
+                  data : chart_data.data[1]
                 }
               ]
             };
@@ -1093,22 +1092,22 @@
           // ----------------------------------- 
 
           vm.barData = {
-              labels : chart_data.labels2,
+              labels : chart_data.labels,
               datasets : [
                 {
                   fillColor : Colors.byName('info'),
                   strokeColor : Colors.byName('info'),
                   highlightFill: Colors.byName('info'),
                   highlightStroke: Colors.byName('info'),
-                  data : chart_data.data2[0]
+                  data : chart_data.data[0]
                 },
-                //{
-                //  fillColor : 'rgba(230,230,230,1)',
-                //  strokeColor : 'rgba(230,230,230,0.1)',
-                //  highlightFill : Colors.byName('primary'),
-                //  highlightStroke : 'rgba(256,256,256,1)',
-                //  data :  chart_data.data2[1]
-                //}
+                {
+                  fillColor : Colors.byName('primary'),
+                  strokeColor : Colors.byName('primary'),
+                  highlightFill : Colors.byName('primary'),
+                  highlightStroke : Colors.byName('primary'),
+                  data :  chart_data.data[1]
+                }
               ]
           };
           
@@ -1120,7 +1119,7 @@
             barShowStroke : true,
             barStrokeWidth : 2,
             barValueSpacing : 5,
-            barDatasetSpacing : 5
+            barDatasetSpacing : 10
           };
 
 
